@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立紘小聚活動報名 - 歡樂聖誕特別場</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="立紘小聚歡樂聖誕節特別活動報名頁面，提供詳細活動時間、地點與餐廳介紹。">
+</head>
+<body>
+
+    <header>
+        <h1>立紘小聚活動報名</h1>
+        
+        <nav>
+            <ul>
+                <li><a href="#intro" title="前往活動介紹">活動介紹</a></li>
+                <li><a href="#info" title="前往活動資訊">活動資訊</a></li>
+                <li><a href="#gallery" title="前往精彩照片">精彩照片</a></li>
+                <li><a href="#menu" title="前往當日菜單">當日菜單</a></li>
+                <li><a href="#register" title="前往報名表單">立即報名</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro">
+            <h2>🎉 歡樂聖誕節特別活動</h2>
+            <p>辛苦了一整年，在這個溫馨的節日，立紘邀請大家一起享受美食與交換禮物的樂趣！也是我們凝聚感情的好機會。</p>
+        </section>
+
+        <section id="info">
+            <h2>ℹ️ 活動資訊</h2>
+            <ul>
+                <li><strong>時間：</strong> 2026年12月24日(四) 晚上 18:30 - 21:00</li>
+                <li><strong>地點：</strong> 大嗑西式餐館 Ducky Restaurant (台北市中正區濟南路二段18-3號)</li>
+            </ul>
+        </section>
+        <section id="restaurant">
+            <h2>🍽️ 餐廳簡介</h2>
+            <p>以其美味的菜餚和溫馨的氛圍而聞名，非常適合團體聚餐。</p>
+            <p>更多資訊請參考：
+    <a href="https://www.facebook.com/duckyrestaurant/" target="_blank" rel="noopener" title="前往大嗑西式餐館臉書粉專">
+        大嗑西式餐館臉書粉專
+    </a>
+</p>
+        </section>
+
+<section id="gallery">
+    <h2>📸 餐廳與活動預覽</h2>
+    
+    <div class="image-grid">
+        <img src="image/location.jpg" alt="餐廳環境">
+        <img src="image/pizza.jpg" alt="美味披薩">
+        <img src="image/picture.jpg" alt="活動合照">
+    </div>
+</section>     
+</section>
+
+        <section id="menu">
+            <h2>📋 活動流程表</h2>
+            <table border="1">
+                <caption>當日活動流程安排</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">時間</th>
+                        <th scope="col">活動內容</th>
+                        <th scope="col">備註</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>18:30 - 19:00</td>
+                        <td>入場與點餐</td>
+                        <td>請準時抵達</td>
+                    </tr>
+                    <tr>
+                        <td>19:00 - 20:30</td>
+                        <td>享用美食</td>
+                        <td>含飲料無限暢飲</td>
+                    </tr>
+                    <tr>
+                        <td>20:30 - 21:00</td>
+                        <td>交換禮物</td>
+                        <td>請準備 $300 元以內禮物</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="register">
+            <h2>📝 立即報名</h2>
+            <form action="#" method="POST">
+                <div>
+                    <label for="name">您的姓名：</label>
+                    <input type="text" id="name" name="name" required placeholder="請輸入全名">
+                </div>
+                <br>
+
+                <div>
+                    <label for="email">電子郵件：</label>
+                    <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                </div>
+                <br>
+
+                <div>
+                    <label for="phone">聯絡電話：</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="0912-345-678">
+                </div>
+                <br>
+
+                <fieldset>
+                    <legend>飲食偏好：</legend>
+                    <input type="radio" id="meat" name="diet" value="meat" checked>
+                    <label for="meat">葷食</label>
+                    
+                    <input type="radio" id="veg" name="diet" value="vegetarian">
+                    <label for="veg">素食</label>
+                </fieldset>
+                <br>
+
+                <div>
+                    <label for="notes">其他備註：</label><br>
+                    <textarea id="notes" name="notes" rows="4" cols="50" placeholder="若有過敏食材請在此說明"></textarea>
+                </div>
+                <br>
+
+                <button type="submit">送出報名</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <hr>
+        <h2>📞 主辦單位聯絡資訊</h2>
+        <p>主辦人：立紘行政組</p>
+        <p>Email：<a href="mailto:admin@lihong.com" title="寄信給立紘行政組">admin@lihong.com</a></p>
+        <p>電話：<a href="tel:0212345678" title="撥打聯絡電話">02-1234-5678</a></p>
+        <p>&copy; 2026 立紘小聚. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
