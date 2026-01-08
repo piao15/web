@@ -1,0 +1,283 @@
+/* 基礎設定：設定全站字體與對齊 */
+body {
+    font-family: "Microsoft JhengHei", Arial, sans-serif; /* 設定繁體中文常用字體 */
+    line-height: 1.6;        /* 增加行高，閱讀更舒服 */
+    color: #333;             /* 深灰色文字，對比度高且不傷眼 */
+    background-color: #f4f4f4; /* 淺灰色背景，增加層次感 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 頁首 (Header) 設計 */
+header {
+    background-color: #c0392b; /* 聖誕紅背景 */
+    color: white;              /* 白色文字，確保高對比 */
+    padding: 20px;
+    text-align: center;
+}
+
+/* 導覽列 (Navbar) 設計 */
+nav ul {
+    background-color: #2c3e50; /* 深藍色背景 */
+    list-style: none;          /* 去除清單圓點 */
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;           /* 讓清單變成橫向排列 */
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;     /* 去除超連結底線 */
+    font-weight: bold;
+}
+
+/* 滑鼠滑過連結時的變化 (互動性) */
+nav ul li a:hover {
+    color: #f1c40f;            /* 變為金色，增加視覺回饋 */
+}
+
+/* 內容區塊 (Section) 設定 */
+section {
+    padding: 40px 20px;
+    background-color: white;   /* 內容區用白色底，讓文字最清晰 */
+    margin-bottom: 20px;       /* 區塊之間留白 */
+    max-width: 1000px;         /* 限制最大寬度，避免文字拉太長 */
+    margin-left: auto;
+    margin-right: auto;        /* 讓區塊居中 */
+}
+
+/* 圖片美化 */
+img {
+    max-width: 100%;           /* 確保圖片不會超出螢幕範圍 */
+    height: auto;
+    border-radius: 8px;        /* 加上圓角 */
+    display: block;
+    margin: 10px 0;
+}
+/* 這是大區塊，負責留白和標題對齊 */
+#gallery {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 這是專門管圖片排隊的容器 */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 電腦版三列 */
+    gap: 20px;
+    margin-top: 20px; /* 讓標題跟圖片之間有一點空隙 */
+}
+
+/* 圖片樣式維持不變 */
+.image-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#gallery img {
+    width: 100%;
+    height: 200px;         /* 固定高度確保對齊 */
+    object-fit: cover;     /* 裁切圖片不變形 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 表格容器設定 */
+table {
+    width: 100%;            /* 讓表格填滿容器寬度 */
+    border-collapse: collapse; /* 合併邊框，去掉雙線感 */
+    margin: 20px 0;
+    font-size: 1.1em;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 增加一點立體感 */
+}
+
+/* 標題列 (thead) 設定 */
+thead tr {
+    background-color: #2c3e50; /* 深藍色背景 */
+    color: #ffffff;            /* 白色文字 */
+    text-align: left;
+    font-weight: bold;
+}
+
+/* 單元格 (th/td) 設定 */
+th, td {
+    padding: 12px 15px;      /* 增加內距，讓文字不擁擠 */
+    border: 1px solid #ddd;  /* 淺灰色邊框 */
+}
+
+/* 間行變色 (Zebra Striping) */
+/* 這能幫助眼睛更容易追蹤每一行的內容 */
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* 滑鼠滑過行時變色 (Hover Effect) */
+tbody tr:hover {
+    background-color: #fdebd0; /* 淡淡的暖色，增加互動感 */
+}
+
+
+/* 表單容器 */
+form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+/* 讓標籤 (Label) 變粗並換行 */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* 美化輸入框與文字區域 */
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form textarea {
+    width: 100%;           /* 寬度撐滿 */
+    padding: 12px;         /* 增加內部空間 */
+    margin-bottom: 20px;   /* 欄位間的距離 */
+    border: 1px solid #ccc;
+    border-radius: 5px;    /* 圓角 */
+    box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
+}
+
+/* 強化焦點狀態 (無障礙 AA：讓使用者知道現在選中哪一格) */
+form input:focus, 
+form textarea:focus {
+    border-color: #c0392b; /* 變成聖誕紅 */
+    outline: none;
+    box-shadow: 0 0 5px rgba(192, 57, 43, 0.3);
+}
+
+/* 聖誕風格送出按鈕 */
+form button[type="submit"] {
+    background-color: #c0392b; /* 聖誕紅 */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;          /* 滑鼠移上去變手指圖示 */
+    transition: background 0.3s; /* 變色平滑動畫 */
+    width: 100%;              /* 手機版建議按鈕撐滿比較好按 */
+}
+
+/* 按鈕互動效果 */
+form button[type="submit"]:hover {
+    background-color: #a93226; /* 深一點的紅 */
+}
+
+/* 頁尾容器設定 */
+footer {
+    background-color: #2c3e50; /* 與導覽列呼應的深藍色 */
+    color: #ecf0f1;            /* 淺灰色文字，降低對比疲勞 */
+    padding: 40px 20px;
+    text-align: center;        /* 內容置中 */
+    margin-top: 50px;          /* 與上方內容拉開距離 */
+}
+
+/* 頁尾標題 */
+footer h2 {
+    color: #f1c40f;            /* 溫暖的金色標題 */
+    margin-bottom: 20px;
+}
+
+/* 聯絡資訊連結樣式 */
+footer a {
+    color: #3498db;            /* 亮藍色連結 */
+    text-decoration: none;     /* 去除底線 */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+/* 連結滑過效果 */
+footer a:hover {
+    color: #f1c40f;            /* 滑過時變金色 */
+    text-decoration: underline; /* 滑過時顯示底線 */
+}
+
+/* 底部版權宣告文字 */
+footer p {
+    font-size: 0.9em;          /* 字稍微縮小一點 */
+    margin: 10px 0;
+    opacity: 0.8;              /* 稍微半透明，製造層次感 */
+}
+
+/* 當螢幕寬度小於 768px 時執行（手機與平板） */
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: 1fr; /* 改成只有一欄 */
+    }
+    
+    #gallery img {
+        height: auto; /* 手機版讓圖片依照比例顯示 */
+    }
+
+    nav ul li {
+        display: block; /* 導覽列變成垂直堆疊，方便手指點擊 */
+        margin: 10px 0;
+    }
+}
+
+/* 確保所有區塊的大標題都是靠左對齊 */
+section h2 {
+    text-align: left;         /* 強制靠左 */
+    color: #c0392b;          /* 統一聖誕紅顏色 */
+    border-left: 5px solid #c0392b; /* 專業感小撇步：標題左側加一條色棒 */
+    padding-left: 15px;      /* 色棒與文字間距 */
+    margin-bottom: 20px;     /* 與下方內容的距離 */
+}
+
+
+/* --- RWD 手機版設定 --- */
+
+/* 當螢幕寬度小於 768px (通常是手機與平板直向) 時執行 */
+@media (max-width: 768px) {
+    
+    /* 1. 導覽列：從橫排變直排，方便手指點擊 */
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    /* 2. 圖片網格：從三列變一列 */
+    .image-grid {
+        grid-template-columns: 1fr; /* 1fr 代表佔滿整行 */
+        gap: 15px;
+    }
+
+    /* 3. 圖片高度：手機上可以稍微縮小高度，避免滑太久 */
+    .image-grid img {
+        height: 200px;
+    }
+
+    /* 4. 表格：這是在手機上最難處理的，我們先讓它產生橫向滾動條 */
+    table {
+        display: block;
+        overflow-x: auto; /* 超出寬度時出現水平捲軸 */
+        white-space: nowrap; /* 防止文字換行 */
+    }
+
+    /* 5. 字體與間距微調 */
+    section {
+        padding: 20px 15px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+}
