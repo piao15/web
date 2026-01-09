@@ -1,10 +1,20 @@
+我們可以一起把這個完整版拼湊出來！為了確保你的報名資料不會不見，我們把剛剛分散的部分重新組合到同一個檔案中，並保留載入共用組件（Header/Footer）的機制。
+
+這樣做的好處是：你的 index.html 負責儲存這場活動專屬的資料（如報名表單），而導覽列和頁尾則交給 components/ 資料夾統一管理。
+
+🛠️ 立紘小聚：完整版 index.html 結構
+請將以下內容存為 index.html。我已經把剛才「不見」的報名欄位補回 <main> 區塊中了：
+
+HTML
+
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>立紘小聚活動報名</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
     <div id="header-placeholder"></div>
@@ -12,29 +22,67 @@
     <main>
         <section id="intro">
             <h2>🎉 歡樂聖誕節特別活動</h2>
-            <p>辛苦了一整年，在這個溫馨的節日，立紘邀請大家一起享受美食與交換禮物的樂趣！</p>
+            <p>辛苦了一整年，邀請大家享受美食與交換禮物的樂趣！這是我們凝聚感情的好機會。</p>
         </section>
 
         <section id="info">
             <h2>ℹ️ 活動資訊</h2>
             <ul>
-                <li><strong>時間：</strong> 2026年12月24日(四)</li>
-                <li><strong>地點：</strong> 大嗑西式餐館</li>
+                <li><strong>時間：</strong> 2026年12月24日(四) 18:30 - 21:00</li>
+                <li><strong>地點：</strong> 大嗑西式餐館 (台北市中正區濟南路二段18-3號)</li>
             </ul>
         </section>
 
         <section id="gallery">
             <h2>📸 精彩照片</h2>
             <div class="image-grid">
-                <img src="image/location.jpg" alt="餐廳環境">
-                <img src="image/pizza.jpg" alt="美味披薩">
-                <img src="image/picture.jpg" alt="活動合照">
+                <img src="image/location.jpg" alt="餐廳環境" style="width:100%; max-width:300px;">
+                <img src="image/pizza.jpg" alt="美味披薩" style="width:100%; max-width:300px;">
+                <img src="image/picture.jpg" alt="活動合照" style="width:100%; max-width:300px;">
             </div>
+        </section>
+
+        <section id="menu">
+            <h2>📋 活動流程表</h2>
+            <table border="1" style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>時間</th>
+                        <th>內容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>18:30</td><td>入場與點餐</td></tr>
+                    <tr><td>19:00</td><td>享用美食</td></tr>
+                    <tr><td>20:30</td><td>交換禮物</td></tr>
+                </tbody>
+            </table>
         </section>
 
         <section id="register">
             <h2>📝 立即報名</h2>
             <form action="#" method="POST">
+                <p>
+                    <label for="name">您的姓名：</label>
+                    <input type="text" id="name" name="name" required placeholder="請輸入姓名">
+                </p>
+                <p>
+                    <label for="email">電子郵件：</label>
+                    <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                </p>
+                <p>
+                    <label for="phone">聯絡電話：</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="0912-345-678">
+                </p>
+                <p>
+                    <label>飲食偏好：</label>
+                    <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
+                    <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
+                </p>
+                <p>
+                    <label for="notes">其他備註：</label><br>
+                    <textarea id="notes" name="notes" rows="3" style="width:100%"></textarea>
+                </p>
                 <button type="submit">送出報名</button>
             </form>
         </section>
@@ -45,17 +93,19 @@
     <script>
         function loadComponent(id, file) {
             fetch(file)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) throw new Error("找不到檔案：" + file);
+                    return response.text();
+                })
                 .then(data => {
                     document.getElementById(id).innerHTML = data;
                 })
-                .catch(err => console.error("載入組件失敗:", err));
+                .catch(err => console.error(err));
         }
 
-        // 執行載入，路徑要對準你的 components 資料夾
+        // 執行載入
         loadComponent('header-placeholder', 'components/header.html');
         loadComponent('footer-placeholder', 'components/footer.html');
     </script>
-
 </body>
 </html>
