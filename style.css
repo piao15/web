@@ -281,3 +281,15 @@ section h2 {
         font-size: 1.5rem;
     }
 }
+
+/* 當螢幕寬度小於 600px 時執行 */
+@media (max-width: 600px) {
+    header nav ul {
+        flex-direction: column; /* 讓選單從橫排變直排 */
+        align-items: center;
+    }
+    
+    header nav ul li {
+        margin: 5px 0; /* 增加上下間距，比較好點擊 */
+    }
+}

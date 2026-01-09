@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>立紘小聚活動報名 - 歡樂聖誕特別場</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="description" content="立紘小聚歡樂聖誕節特別活動報名頁面，提供詳細活動時間、地點與餐廳介紹。">
-</head>
-<body>
 
-    <header>
-        <h1>立紘小聚活動報名</h1>
-        
-        <nav>
-            <ul>
-                <li><a href="#intro" title="前往活動介紹">活動介紹</a></li>
-                <li><a href="#info" title="前往活動資訊">活動資訊</a></li>
-                <li><a href="#gallery" title="前往精彩照片">精彩照片</a></li>
-                <li><a href="#menu" title="前往當日菜單">當日菜單</a></li>
-                <li><a href="#register" title="前往報名表單">立即報名</a></li>
-            </ul>
-        </nav>
-    </header>
+<div id="header-placeholder"></div>
+
+<main>
+    </main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    // 建立一個函式來加載組件
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById(id).innerHTML = data;
+            });
+    }
+
+    // 執行加載
+    loadComponent('header-placeholder', 'components/header.html');
+    loadComponent('footer-placeholder', 'components/footer.html');
+</script>
 
     <main>
         <section id="intro">
@@ -130,14 +130,44 @@
         </section>
     </main>
 
-    <footer>
-        <hr>
-        <h2>📞 主辦單位聯絡資訊</h2>
-        <p>主辦人：立紘行政組</p>
-        <p>Email：<a href="mailto:admin@lihong.com" title="寄信給立紘行政組">admin@lihong.com</a></p>
-        <p>電話：<a href="tel:0212345678" title="撥打聯絡電話">02-1234-5678</a></p>
-        <p>&copy; 2026 立紘小聚. All rights reserved.</p>
-    </footer>
+    <div id="header-placeholder"></div>
+
+<main>
+    </main>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    // 建立一個函式來加載組件
+    function loadComponent(id, file) {
+        fetch(file)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById(id).innerHTML = data;
+            });
+    }
+
+    // 執行加載
+    loadComponent('header-placeholder', 'components/header.html');
+    loadComponent('footer-placeholder', 'components/footer.html');
+</script>
+
+
+<script>
+    // 定義一個載入組件的函式
+    function includeHTML() {
+        // 這裡我們針對 header 進行載入
+        fetch('header.html') // 如果在同一個資料夾就直接寫檔名
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(err => console.error('載入失敗：', err));
+    }
+
+    // 網頁開啟時執行
+    includeHTML();
+</script>
 
 </body>
 </html>
