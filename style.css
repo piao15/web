@@ -293,3 +293,23 @@ section h2 {
         margin: 5px 0; /* 增加上下間距，比較好點擊 */
     }
 }
+
+
+.btn-more {
+    display: inline-block;    /* 讓連結可以設定寬高和內距 */
+    padding: 10px 20px;       /* 按鈕內部的留白 */
+    background-color: #c0392b; /* 聖誕紅背景 */
+    color: white;             /* 白色文字 */
+    text-decoration: none;    /* 去除預設底線 */
+    border-radius: 25px;      /* 圓角設計，看起來更親切 */
+    font-weight: bold;
+    margin-top: 15px;         /* 與上方文字保持距離 */
+    transition: 0.3s;         /* 變色動畫效果 */
+}
+
+/* 滑鼠滑過時的變化 */
+.btn-more:hover {
+    background-color: #a93226; /* 顏色變深 */
+    transform: scale(1.05);    /* 輕微放大效果 */
+}
+
