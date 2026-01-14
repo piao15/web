@@ -313,3 +313,18 @@ section h2 {
     transform: scale(1.05);    /* 輕微放大效果 */
 }
 
+/* 針對精彩照片區域的圖片美化 */
+.image-grid img {
+    border-radius: 12px;           /* 讓圖片邊角更圓潤 */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 加上輕微的陰影，增加深度 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 設定動畫過渡時間 */
+    cursor: pointer;
+}
+
+/* 當滑鼠移到圖片上時的變化 */
+.image-grid img:hover {
+    transform: scale(1.05);        /* 圖片輕微放大 5% */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* 陰影變深，感覺像飄起來 */
+    filter: brightness(1.1);       /* 亮度輕微提升 */
+}
+
