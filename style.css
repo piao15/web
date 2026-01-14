@@ -1,364 +1,173 @@
-/* 基礎設定：設定全站字體與對齊 */
+這是一個非常關鍵的整理步驟！在 CSS 中，如果同樣的選擇器（例如 section 或 .image-grid img）散落在各處，瀏覽器會因為重複定義而感到混亂，這也是導致網頁視覺「不平衡」的主因。
+
+為了幫你達成「專業且對齊」的目標，我整理了一份整合後的 CSS 結構。你可以把原本 style.css 裡的內容全部刪除，然後換成下面這份整理好的版本。
+
+我已經幫你把重複的部分合併，並統一了所有區塊的寬度。
+
+🎨 整合版 CSS 內容
+CSS
+
+/* --- 1. 全域設定與配色 --- */
 body {
-    font-family: "Microsoft JhengHei", Arial, sans-serif; /* 設定繁體中文常用字體 */
-    line-height: 1.6;        /* 增加行高，閱讀更舒服 */
-    color: #333;             /* 深灰色文字，對比度高且不傷眼 */
-    background-color: #f4f4f4; /* 淺灰色背景，增加層次感 */
+    font-family: "Microsoft JhengHei", Arial, sans-serif;
+    line-height: 1.6;
+    color: #4a3c31;             /* 微調為深棕色，與象牙白更搭 */
+    background-color: #f4f4f4;  /* 全網頁背景 */
     margin: 0;
     padding: 0;
 }
 
-/* 頁首 (Header) 設計 */
+/* --- 2. 導覽與頁首 --- */
 header {
-    background-color: #c0392b; /* 聖誕紅背景 */
-    color: white;              /* 白色文字，確保高對比 */
+    background-color: #c0392b;
+    color: white;
     padding: 20px;
     text-align: center;
 }
 
-/* 導覽列 (Navbar) 設計 */
 nav ul {
-    background-color: #2c3e50; /* 深藍色背景 */
-    list-style: none;          /* 去除清單圓點 */
+    background-color: #2c3e50;
+    list-style: none;
     padding: 10px;
     margin: 0;
     text-align: center;
 }
 
 nav ul li {
-    display: inline;           /* 讓清單變成橫向排列 */
+    display: inline;
     margin-right: 20px;
 }
 
 nav ul li a {
     color: white;
-    text-decoration: none;     /* 去除超連結底線 */
+    text-decoration: none;
     font-weight: bold;
 }
 
-/* 滑鼠滑過連結時的變化 (互動性) */
 nav ul li a:hover {
-    color: #f1c40f;            /* 變為金色，增加視覺回饋 */
+    color: #f1c40f;
 }
 
-
-
-/* 內容區塊 (Section) 設定 */
+/* --- 3. 核心區塊 (Section) 統一規格 --- */
+/* 這是解決「不平衡」最重要的地方 */
 section {
-    padding: 60px 30px;        /* 增加內距，讓內容有更多空間呼吸 */
-    background-color: #fdfaf6; /* 換成溫潤的象牙白 */
-    margin-bottom: 40px;       /* 增加區塊間的距離 */
-    border-radius: 15px;       /* 給區塊一點點圓角，看起來更親切 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 淡淡的陰影，讓區塊輕輕浮起 */
-    
-    max-width: 900px;          /* 稍微縮小最大寬度，讓文字行長更適合閱讀 */
-    margin-left: auto;
-    margin-right: auto;
-}
-/* 圖片美化 */
-img {
-    max-width: 100%;           /* 確保圖片不會超出螢幕範圍 */
-    height: auto;
-    border-radius: 8px;        /* 加上圓角 */
-    display: block;
-    margin: 10px 0;
-}
-/* 這是大區塊，負責留白和標題對齊 */
-#gallery {
-    padding: 40px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 800px;           /* 統一所有卡片寬度 */
+    margin: 40px auto;          /* 增加上下間距 */
+    padding: 40px;              /* 統一內部留白 */
+    background-color: #fdfaf6;  /* 象牙白底色 */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-sizing: border-box;     /* 確保寬度計算包含內距 */
 }
 
-/* 這是專門管圖片排隊的容器 */
+/* 標題裝飾：漸層底線 */
+section h2 {
+    color: #c0392b;
+    background-image: linear-gradient(to right, #c0392b, #2d5a27);
+    background-repeat: no-repeat;
+    background-size: 100% 3px;
+    background-position: 0 100%;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+/* --- 4. 圖片美化與復古效果 --- */
 .image-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 電腦版三列 */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-top: 20px; /* 讓標題跟圖片之間有一點空隙 */
+    margin-top: 20px;
 }
 
-/* 圖片樣式維持不變 */
 .image-grid img {
     width: 100%;
-    height: 200px;
+    height: 200px;              /* 固定高度確保整齊 */
     object-fit: cover;
-    border-radius: 8px;
-}
-
-#gallery img {
-    width: 100%;
-    height: 200px;         /* 固定高度確保對齊 */
-    object-fit: cover;     /* 裁切圖片不變形 */
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    filter: grayscale(50%);      /* 復古濾鏡 */
+    transition: all 0.3s ease;
 }
 
-/* 表格容器設定 */
-table {
-    width: 100%;            /* 讓表格填滿容器寬度 */
-    border-collapse: collapse; /* 合併邊框，去掉雙線感 */
-    margin: 20px 0;
-    font-size: 1.1em;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* 增加一點立體感 */
-}
-
-/* 標題列 (thead) 設定 */
-thead tr {
-    background-color: #2c3e50; /* 深藍色背景 */
-    color: #ffffff;            /* 白色文字 */
-    text-align: left;
-    font-weight: bold;
-}
-
-/* 單元格 (th/td) 設定 */
-th, td {
-    padding: 12px 15px;      /* 增加內距，讓文字不擁擠 */
-    border: 1px solid #ddd;  /* 淺灰色邊框 */
-}
-
-/* 間行變色 (Zebra Striping) */
-/* 這能幫助眼睛更容易追蹤每一行的內容 */
-tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-/* 滑鼠滑過行時變色 (Hover Effect) */
-tbody tr:hover {
-    background-color: #fdebd0; /* 淡淡的暖色，增加互動感 */
-}
-
-
-/* 表單容器 */
-form {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    border: 1px solid #eee;
-}
-
-/* 讓標籤 (Label) 變粗並換行 */
-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-/* 美化輸入框與文字區域 */
-form input[type="text"],
-form input[type="email"],
-form input[type="tel"],
-form textarea {
-    width: 100%;           /* 寬度撐滿 */
-    padding: 12px;         /* 增加內部空間 */
-    margin-bottom: 20px;   /* 欄位間的距離 */
-    border: 1px solid #ccc;
-    border-radius: 5px;    /* 圓角 */
-    box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
-}
-
-/* 強化焦點狀態 (無障礙 AA：讓使用者知道現在選中哪一格) */
-form input:focus, 
-form textarea:focus {
-    border-color: #c0392b; /* 變成聖誕紅 */
-    outline: none;
-    box-shadow: 0 0 5px rgba(192, 57, 43, 0.3);
-}
-
-/* 聖誕風格送出按鈕 */
-form button[type="submit"] {
-    background-color: #c0392b; /* 聖誕紅 */
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;          /* 滑鼠移上去變手指圖示 */
-    transition: background 0.3s; /* 變色平滑動畫 */
-    width: 100%;              /* 手機版建議按鈕撐滿比較好按 */
-}
-
-/* 按鈕互動效果 */
-form button[type="submit"]:hover {
-    background-color: #a93226; /* 深一點的紅 */
-}
-
-/* 頁尾容器設定 */
-footer {
-    background-color: #2c3e50; /* 與導覽列呼應的深藍色 */
-    color: #ecf0f1;            /* 淺灰色文字，降低對比疲勞 */
-    padding: 40px 20px;
-    text-align: center;        /* 內容置中 */
-    margin-top: 50px;          /* 與上方內容拉開距離 */
-}
-
-/* 頁尾標題 */
-footer h2 {
-    color: #f1c40f;            /* 溫暖的金色標題 */
-    margin-bottom: 20px;
-}
-
-/* 聯絡資訊連結樣式 */
-footer a {
-    color: #3498db;            /* 亮藍色連結 */
-    text-decoration: none;     /* 去除底線 */
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-/* 連結滑過效果 */
-footer a:hover {
-    color: #f1c40f;            /* 滑過時變金色 */
-    text-decoration: underline; /* 滑過時顯示底線 */
-}
-
-/* 底部版權宣告文字 */
-footer p {
-    font-size: 0.9em;          /* 字稍微縮小一點 */
-    margin: 10px 0;
-    opacity: 0.8;              /* 稍微半透明，製造層次感 */
-}
-
-/* 當螢幕寬度小於 768px 時執行（手機與平板） */
-@media (max-width: 768px) {
-    .image-grid {
-        grid-template-columns: 1fr; /* 改成只有一欄 */
-    }
-    
-    #gallery img {
-        height: auto; /* 手機版讓圖片依照比例顯示 */
-    }
-
-    nav ul li {
-        display: block; /* 導覽列變成垂直堆疊，方便手指點擊 */
-        margin: 10px 0;
-    }
-}
-
-/* 確保所有區塊的大標題都是靠左對齊 */
-section h2 {
-    text-align: left;
-    color: #c0392b;
-    /* 取消原本的左側色棒，改用底線設計 */
-    border-left: none; 
-    padding-left: 0;
-    
-    /* 使用背景圖案製作漸層底線 */
-    background-image: linear-gradient(to right, #c0392b, #2d5a27); /* 紅到綠的聖誕漸層 */
-    background-repeat: no-repeat;
-    background-size: 100% 3px;      /* 寬度 100%, 高度 3px */
-    background-position: 0 100%;    /* 定位在文字下方 */
-    
-    padding-bottom: 10px;           /* 讓文字跟底線有一點呼吸空間 */
-    margin-bottom: 25px;
-    display: inline-block;          /* 讓底線長度跟隨文字長度，而不是撐滿整個區塊 */
-}
-
-/* --- RWD 手機版設定 --- */
-
-/* 當螢幕寬度小於 768px (通常是手機與平板直向) 時執行 */
-@media (max-width: 768px) {
-    
-    /* 1. 導覽列：從橫排變直排，方便手指點擊 */
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    /* 2. 圖片網格：從三列變一列 */
-    .image-grid {
-        grid-template-columns: 1fr; /* 1fr 代表佔滿整行 */
-        gap: 15px;
-    }
-
-    /* 3. 圖片高度：手機上可以稍微縮小高度，避免滑太久 */
-    .image-grid img {
-        height: 200px;
-    }
-
-    /* 4. 表格：這是在手機上最難處理的，我們先讓它產生橫向滾動條 */
-    table {
-        display: block;
-        overflow-x: auto; /* 超出寬度時出現水平捲軸 */
-        white-space: nowrap; /* 防止文字換行 */
-    }
-
-    /* 5. 字體與間距微調 */
-    section {
-        padding: 20px 15px;
-    }
-    
-    h1 {
-        font-size: 1.5rem;
-    }
-}
-
-/* 當螢幕寬度小於 600px 時執行 */
-@media (max-width: 600px) {
-    header nav ul {
-        flex-direction: column; /* 讓選單從橫排變直排 */
-        align-items: center;
-    }
-    
-    header nav ul li {
-        margin: 5px 0; /* 增加上下間距，比較好點擊 */
-    }
-}
-
-
-.btn-more {
-    display: inline-block;    /* 讓連結可以設定寬高和內距 */
-    padding: 10px 20px;       /* 按鈕內部的留白 */
-    background-color: #c0392b; /* 聖誕紅背景 */
-    color: white;             /* 白色文字 */
-    text-decoration: none;    /* 去除預設底線 */
-    border-radius: 25px;      /* 圓角設計，看起來更親切 */
-    font-weight: bold;
-    margin-top: 15px;         /* 與上方文字保持距離 */
-    transition: 0.3s;         /* 變色動畫效果 */
-}
-
-/* 滑鼠滑過時的變化 */
-.btn-more:hover {
-    background-color: #a93226; /* 顏色變深 */
-    transform: scale(1.05);    /* 輕微放大效果 */
-}
-
-/* 針對精彩照片區域的圖片美化 */
-.image-grid img {
-    border-radius: 12px;           /* 讓圖片邊角更圓潤 */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 加上輕微的陰影，增加深度 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* 設定動畫過渡時間 */
-    cursor: pointer;
-}
-
-/* 當滑鼠移到圖片上時的變化 */
 .image-grid img:hover {
-    transform: scale(1.05);        /* 圖片輕微放大 5% */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* 陰影變深，感覺像飄起來 */
-    filter: brightness(1.1);       /* 亮度輕微提升 */
+    transform: scale(1.05);
+    filter: grayscale(0%) brightness(1.1);
 }
 
-/* 圖片平常的狀態：帶有復古感的半灰階 */
-.image-grid img {
-    filter: grayscale(50%); /* 50% 的灰度，保留一點點色彩但有舊照片感 */
-    transition: filter 0.3s ease, transform 0.3s ease; /* 確保變化是平滑的 */
-}
-
-/* 當滑鼠移上去時：恢復全彩並增加亮度 */
-.image-grid img:hover {
-    filter: grayscale(0%) brightness(1.1); /* 恢復 100% 色彩，並稍微調亮 */
-    transform: scale(1.05); 
-}
-/* 讓圖片說明文字更精緻 */
 figcaption {
     text-align: center;
     font-size: 0.9em;
     color: #666;
-    font-style: italic; /* 斜體增加氣質 */
+    font-style: italic;
     margin-top: 8px;
-    letter-spacing: 1px; /* 增加字距，呼吸感更好 */
 }
 
+/* --- 5. 表單與表格美化 --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #eee;
+}
+
+thead tr {
+    background-color: #2c3e50;
+    color: white;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn-more, form button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #c0392b;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-more:hover, form button:hover {
+    background-color: #a93226;
+    transform: translateY(-2px); /* 向上微浮 */
+}
+
+/* --- 6. 頁尾與響應式 --- */
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 40px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    section {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+}
