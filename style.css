@@ -41,16 +41,20 @@ nav ul li a:hover {
     color: #f1c40f;            /* 變為金色，增加視覺回饋 */
 }
 
+
+
 /* 內容區塊 (Section) 設定 */
 section {
-    padding: 40px 20px;
-    background-color: white;   /* 內容區用白色底，讓文字最清晰 */
-    margin-bottom: 20px;       /* 區塊之間留白 */
-    max-width: 1000px;         /* 限制最大寬度，避免文字拉太長 */
+    padding: 60px 30px;        /* 增加內距，讓內容有更多空間呼吸 */
+    background-color: #fdfaf6; /* 換成溫潤的象牙白 */
+    margin-bottom: 40px;       /* 增加區塊間的距離 */
+    border-radius: 15px;       /* 給區塊一點點圓角，看起來更親切 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 淡淡的陰影，讓區塊輕輕浮起 */
+    
+    max-width: 900px;          /* 稍微縮小最大寬度，讓文字行長更適合閱讀 */
     margin-left: auto;
-    margin-right: auto;        /* 讓區塊居中 */
+    margin-right: auto;
 }
-
 /* 圖片美化 */
 img {
     max-width: 100%;           /* 確保圖片不會超出螢幕範圍 */
@@ -326,5 +330,26 @@ section h2 {
     transform: scale(1.05);        /* 圖片輕微放大 5% */
     box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* 陰影變深，感覺像飄起來 */
     filter: brightness(1.1);       /* 亮度輕微提升 */
+}
+
+/* 圖片平常的狀態：帶有復古感的半灰階 */
+.image-grid img {
+    filter: grayscale(50%); /* 50% 的灰度，保留一點點色彩但有舊照片感 */
+    transition: filter 0.3s ease, transform 0.3s ease; /* 確保變化是平滑的 */
+}
+
+/* 當滑鼠移上去時：恢復全彩並增加亮度 */
+.image-grid img:hover {
+    filter: grayscale(0%) brightness(1.1); /* 恢復 100% 色彩，並稍微調亮 */
+    transform: scale(1.05); 
+}
+/* 讓圖片說明文字更精緻 */
+figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic; /* 斜體增加氣質 */
+    margin-top: 8px;
+    letter-spacing: 1px; /* 增加字距，呼吸感更好 */
 }
 
