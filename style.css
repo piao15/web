@@ -1,25 +1,17 @@
-從你提供的 CSS 內容來看，圖片不變與紅棒位置跑掉的原因，主要是因為代碼中存在多個重複的樣式定義。當你把新舊代碼混在一起貼時，瀏覽器會發生「權重競爭」，導致最後呈現的效果不如預期。
-
-例如：你的 section h2 定義了兩次（一次是漸層底線，一次是紅棒），而 img 和 section 也都在不同地方重複出現。
-
-為了徹底解決問題，請刪除目前的全部內容，直接替換為下方這份我為你重新整理、保證不衝突的最終版本：
-
-🚀 最終修復版 CSS (請完整替換)
-CSS
-
 /* --- 1. 全域與背景設定 --- */
 body {
     font-family: "Microsoft JhengHei", Arial, sans-serif;
     line-height: 1.6;
     color: #4a3c31;
-    background-color: #d1d1d1; /* 深灰色背景，拉開對比 */
+    background-color: #d1d1d1; /* 霧灰色背景，襯托象牙白卡片 */
     margin: 0;
     padding: 0;
 }
 
 /* --- 2. 頁首與導覽 --- */
 header {
-    background-color: #c0392b;
+    /* 放射狀深紅漸層，增加精緻儀式感 */
+    background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%);
     color: white;
     padding: 30px;
     text-align: center;
@@ -42,36 +34,38 @@ nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 nav ul li a:hover {
-    color: #f1c40f;
+    color: #f1c40f; /* 金色互動感 */
 }
 
 /* --- 3. 核心區塊 (Section) 統一規格 --- */
 section {
-    max-width: 800px;           /* 統一寬度，解決不平衡 */
+    max-width: 800px;           /* 統一寬度，解決視覺不平衡 */
     margin: 40px auto;
     padding: 40px;
-    background-color: #fdfaf6;  /* 象牙白卡片 */
+    background-color: #fdfaf6;  /* 象牙白質感 */
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     box-sizing: border-box;
-    overflow: hidden;           /* 確保內部內容不溢出 */
+    overflow: hidden;
 }
 
-/* 標題樣式：左側紅棒 (已移除漸層) */
+/* 標題樣式：經典左側紅棒 */
 section h2 {
     text-align: left;
     color: #c0392b;
     border-left: 6px solid #c0392b; 
     padding-left: 15px;
     margin-bottom: 25px;
-    display: block;             /* 確保標題獨立佔行 */
+    display: block;
+    letter-spacing: 2px;       /* 增加字距，更顯專業 */
 }
 
-/* --- 4. 圖片修復 (核心關鍵) --- */
-/* 全域限制：所有圖片都不能超過容器 */
+/* --- 4. 圖片美化與相框效果 --- */
+/* 全域圖片安全設定 */
 img {
     max-width: 100% !important; 
     height: auto !important;
@@ -89,29 +83,50 @@ img {
 }
 
 .image-grid img {
-    height: 200px !important;    /* 網格圖片固定高度 */
+    height: 200px !important;    /* 網格圖片高度統一 */
     object-fit: cover;
-    filter: grayscale(50%);
-    transition: 0.3s;
+    filter: grayscale(50%);      /* 復古舊照片質感 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
 .image-grid img:hover {
     transform: scale(1.05);
-    filter: grayscale(0%) brightness(1.1);
+    filter: grayscale(0%) brightness(1.1); /* 移上去恢復全彩並增亮 */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* 餐廳簡介大圖：實體照片相框感 */
+figure {
+    margin: 20px 0;
+    text-align: center;
+}
+
+figure img {
+    border: 10px solid #ffffff;  /* 拍立得風格白邊 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+figcaption {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
 }
 
 /* --- 5. 表單對齊與美化 --- */
 form {
     background-color: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
 }
 
-/* 修正表單選項對齊問題 */
+/* 修正選項垂直置中 */
 form div, fieldset div {
     display: flex;
-    align-items: center;        /* 垂直置中 */
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
 form input[type="text"], 
@@ -124,9 +139,16 @@ form textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    transition: 0.3s;
 }
 
-/* 覆蓋勾選框的寬度，避免字被擠掉 */
+form input:focus, form textarea:focus {
+    border-color: #c0392b;
+    box-shadow: 0 0 8px rgba(192, 57, 43, 0.2);
+    outline: none;
+}
+
+/* 覆蓋勾選框寬度，防止擠掉文字 */
 form input[type="radio"],
 form input[type="checkbox"] {
     width: auto !important;
@@ -140,27 +162,45 @@ form label {
     cursor: pointer;
 }
 
-/* --- 6. 其他元素與響應式 --- */
+fieldset {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+}
+
+/* --- 6. 表格設計 (森林綠主題) --- */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     background: white;
-}
-
-th, td {
-    padding: 12px;
-    border: 1px solid #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 thead tr {
-    background-color: #2c3e50;
+    background-color: #1e3932; /* 深森林綠 */
     color: white;
 }
 
+th, td {
+    padding: 15px;
+    border: 1px solid #eee;
+    text-align: left;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+tbody tr:hover {
+    background-color: #fcf3cf; /* 滑過時淡淡金黃色 */
+}
+
+/* --- 7. 按鈕與頁尾 --- */
 .btn-more, button[type="submit"] {
     display: inline-block;
-    padding: 12px 25px;
+    padding: 12px 30px;
     background-color: #c0392b;
     color: white;
     text-decoration: none;
@@ -168,7 +208,14 @@ thead tr {
     border: none;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.btn-more:hover, button[type="submit"]:hover {
+    background-color: #a93226;
+    transform: translateY(-2px);
+    letter-spacing: 2px; /* 寬度微調動態感 */
 }
 
 footer {
@@ -178,30 +225,16 @@ footer {
     text-align: center;
 }
 
+/* --- 8. RWD 響應式佈局 --- */
 @media (max-width: 768px) {
-    section { margin: 20px 15px; padding: 25px; }
-    .image-grid { grid-template-columns: 1fr; }
-    .image-grid img { height: auto !important; }
-}
-
-/* 讓餐廳大圖更有「實體照片」的感覺 */
-figure img {
-    border: 8px solid #ffffff;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* 讓表格標題更有聖誕森林的質感 */
-thead tr {
-    background-color: #1e3d1e; /* 改為深綠色 */
-}
-
-/* 按鈕點擊時的微小細節 */
-form button:hover {
-    letter-spacing: 2px;
-    background-color: #a93226;
-}
-
-/* 增加一個很淡很淡的紋理背景 (選擇性) */
-header {
-    background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%);
+    section {
+        margin: 20px 15px;
+        padding: 25px;
+    }
+    .image-grid {
+        grid-template-columns: 1fr; /* 手機上一列 */
+    }
+    .image-grid img {
+        height: auto !important; /* 恢復自動比例 */
+    }
 }
