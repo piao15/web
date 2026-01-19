@@ -1,19 +1,18 @@
-/* --- 1. 全域設定與配色修正 --- */
+/* --- 1. 全域設定與配色 --- */
 body {
     font-family: "Microsoft JhengHei", Arial, sans-serif;
     line-height: 1.6;
-    color: #4a3c31;
-    /* 加深全站背景顏色，讓區塊的米白色「跳」出來 */
-    background-color: #e8e8e8; 
+    color: #4a3c31;             /* 微調為深棕色，與象牙白更搭 */
+    background-color: #f4f4f4;  /* 全網頁背景 */
     margin: 0;
     padding: 0;
 }
 
-/* --- 2. 頁首與導覽 --- */
+/* --- 2. 導覽與頁首 --- */
 header {
     background-color: #c0392b;
     color: white;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
 }
 
@@ -36,40 +35,39 @@ nav ul li a {
     font-weight: bold;
 }
 
+nav ul li a:hover {
+    color: #f1c40f;
+}
+
 /* --- 3. 核心區塊 (Section) 統一規格 --- */
+/* 這是解決「不平衡」最重要的地方 */
 section {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 40px;
-    /* 這裡使用較暖的米白色 */
-    background-color: #fdfaf6; 
+    max-width: 800px;           /* 統一所有卡片寬度 */
+    margin: 40px auto;          /* 增加上下間距 */
+    padding: 40px;              /* 統一內部留白 */
+    background-color: #fdfaf6;  /* 象牙白底色 */
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    box-sizing: border-box;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-sizing: border-box;     /* 確保寬度計算包含內距 */
+
+
+
+
 }
 
-/* 標題樣式：回歸左側束棒設計 (不再使用底線) */
+/* 標題裝飾：漸層底線 */
 section h2 {
-    text-align: left;
     color: #c0392b;
-    border-left: 6px solid #c0392b; /* 左側紅棒 */
-    padding-left: 15px;
+    background-image: linear-gradient(to right, #c0392b, #2d5a27);
+    background-repeat: no-repeat;
+    background-size: 100% 3px;
+    background-position: 0 100%;
+    padding-bottom: 10px;
     margin-bottom: 25px;
-    background-image: none; /* 移除之前的漸層底線 */
+    display: inline-block;
 }
 
-/* --- 4. 圖片修復 (關鍵！) --- */
-
-/* 統一設定所有圖片：確保不超出範圍 */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 15px 0;
-    border-radius: 12px;
-}
-
-/* 針對「精彩照片」的網格排列 */
+/* --- 4. 圖片美化與復古效果 --- */
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -78,44 +76,34 @@ img {
 }
 
 .image-grid img {
-    height: 200px;
+    width: 100%;
+    height: auto;              /* 固定高度確保整齊 */
     object-fit: cover;
-    filter: grayscale(50%); /* 復古感 */
-    transition: 0.3s;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    filter: grayscale(50%);      /* 復古濾鏡 */
+    transition: all 0.3s ease;
 }
 
 .image-grid img:hover {
     transform: scale(1.05);
-    filter: grayscale(0%);
-}
-
-/* 餐廳簡介的特定圖片美化 */
-figure {
-    margin: 20px 0;
-    text-align: center;
-}
-
-figure img {
-    /* 限制這張大圖不要太巨大，並置中 */
-    max-width: 90%; 
-    margin: 0 auto;
-    border: 5px solid white; /* 增加白色相框感，在米色底上很好看 */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    filter: grayscale(0%) brightness(1.1);
 }
 
 figcaption {
+    text-align: center;
     font-size: 0.9em;
     color: #666;
-    margin-top: 10px;
     font-style: italic;
+    margin-top: 8px;
 }
 
-/* --- 5. 表格與表單 --- */
+/* --- 5. 表單與表格美化 --- */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 th, td {
@@ -128,13 +116,13 @@ thead tr {
     color: white;
 }
 
-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-input, textarea {
+form input, form textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -143,9 +131,9 @@ input, textarea {
     box-sizing: border-box;
 }
 
-.btn-more, button[type="submit"] {
+.btn-more, form button {
     display: inline-block;
-    padding: 12px 25px;
+    padding: 12px 24px;
     background-color: #c0392b;
     color: white;
     text-decoration: none;
@@ -156,6 +144,48 @@ input, textarea {
     transition: 0.3s;
 }
 
+.btn-more:hover, form button:hover {
+    background-color: #a93226;
+    transform: translateY(-2px); /* 向上微浮 */
+}
+
+
+/* 讓表單內的選項（單選與複選）垂直置中並保持間距 */
+form div, 
+fieldset div {
+    display: flex;          /* 使用彈性佈局 */
+    align-items: center;    /* 關鍵：讓圓圈/方框與文字垂直居中對齊 */
+    margin-bottom: 10px;    /* 每個選項之間的上下距離 */
+}
+
+/* 微調勾選框與文字之間的左右距離 */
+form input[type="radio"],
+form input[type="checkbox"] {
+    width: auto;            /* 覆蓋掉之前全域 input 寬度 100% 的設定 */
+    margin: 0 10px 0 0;     /* 讓框框右邊留一點空間給文字，上下歸零 */
+    cursor: pointer;
+}
+
+/* 確保標籤文字也是手指游標，提升使用者體驗 */
+form label {
+    display: inline-block;  /* 改回行內區塊 */
+    margin-bottom: 0;       /* 移除之前的下方間距，避免推開對齊 */
+    cursor: pointer;
+}
+
+/* 針對飲食偏好的外框（fieldset）美化 */
+fieldset {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-weight: bold;
+    color: #2c3e50;
+    padding: 0 10px;
+}
 /* --- 6. 頁尾與響應式 --- */
 footer {
     background-color: #2c3e50;
@@ -166,8 +196,8 @@ footer {
 
 @media (max-width: 768px) {
     section {
-        margin: 20px 15px;
-        padding: 25px;
+        margin: 20px 10px;
+        padding: 20px;
     }
     .image-grid {
         grid-template-columns: 1fr;
