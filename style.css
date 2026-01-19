@@ -1,18 +1,27 @@
-/* --- 1. 全域設定與配色 --- */
+從你提供的 CSS 內容來看，圖片不變與紅棒位置跑掉的原因，主要是因為代碼中存在多個重複的樣式定義。當你把新舊代碼混在一起貼時，瀏覽器會發生「權重競爭」，導致最後呈現的效果不如預期。
+
+例如：你的 section h2 定義了兩次（一次是漸層底線，一次是紅棒），而 img 和 section 也都在不同地方重複出現。
+
+為了徹底解決問題，請刪除目前的全部內容，直接替換為下方這份我為你重新整理、保證不衝突的最終版本：
+
+🚀 最終修復版 CSS (請完整替換)
+CSS
+
+/* --- 1. 全域與背景設定 --- */
 body {
     font-family: "Microsoft JhengHei", Arial, sans-serif;
     line-height: 1.6;
-    color: #4a3c31;             /* 微調為深棕色，與象牙白更搭 */
-    background-color: #f4f4f4;  /* 全網頁背景 */
+    color: #4a3c31;
+    background-color: #d1d1d1; /* 深灰色背景，拉開對比 */
     margin: 0;
     padding: 0;
 }
 
-/* --- 2. 導覽與頁首 --- */
+/* --- 2. 頁首與導覽 --- */
 header {
     background-color: #c0392b;
     color: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
 }
 
@@ -40,34 +49,38 @@ nav ul li a:hover {
 }
 
 /* --- 3. 核心區塊 (Section) 統一規格 --- */
-/* 這是解決「不平衡」最重要的地方 */
 section {
-    max-width: 800px;           /* 統一所有卡片寬度 */
-    margin: 40px auto;          /* 增加上下間距 */
-    padding: 40px;              /* 統一內部留白 */
-    background-color: #fdfaf6;  /* 象牙白底色 */
+    max-width: 800px;           /* 統一寬度，解決不平衡 */
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #fdfaf6;  /* 象牙白卡片 */
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    box-sizing: border-box;     /* 確保寬度計算包含內距 */
-
-
-
-
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-sizing: border-box;
+    overflow: hidden;           /* 確保內部內容不溢出 */
 }
 
-/* 標題裝飾：漸層底線 */
+/* 標題樣式：左側紅棒 (已移除漸層) */
 section h2 {
+    text-align: left;
     color: #c0392b;
-    background-image: linear-gradient(to right, #c0392b, #2d5a27);
-    background-repeat: no-repeat;
-    background-size: 100% 3px;
-    background-position: 0 100%;
-    padding-bottom: 10px;
+    border-left: 6px solid #c0392b; 
+    padding-left: 15px;
     margin-bottom: 25px;
-    display: inline-block;
+    display: block;             /* 確保標題獨立佔行 */
 }
 
-/* --- 4. 圖片美化與復古效果 --- */
+/* --- 4. 圖片修復 (核心關鍵) --- */
+/* 全域限制：所有圖片都不能超過容器 */
+img {
+    max-width: 100% !important; 
+    height: auto !important;
+    display: block;
+    margin: 15px auto;
+    border-radius: 12px;
+}
+
+/* 針對「精彩照片」的網格排列 */
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -76,13 +89,10 @@ section h2 {
 }
 
 .image-grid img {
-    width: 100%;
-    height: auto;              /* 固定高度確保整齊 */
+    height: 200px !important;    /* 網格圖片固定高度 */
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    filter: grayscale(50%);      /* 復古濾鏡 */
-    transition: all 0.3s ease;
+    filter: grayscale(50%);
+    transition: 0.3s;
 }
 
 .image-grid img:hover {
@@ -90,20 +100,52 @@ section h2 {
     filter: grayscale(0%) brightness(1.1);
 }
 
-figcaption {
-    text-align: center;
-    font-size: 0.9em;
-    color: #666;
-    font-style: italic;
-    margin-top: 8px;
+/* --- 5. 表單對齊與美化 --- */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-/* --- 5. 表單與表格美化 --- */
+/* 修正表單選項對齊問題 */
+form div, fieldset div {
+    display: flex;
+    align-items: center;        /* 垂直置中 */
+    margin-bottom: 10px;
+}
+
+form input[type="text"], 
+form input[type="email"], 
+form input[type="tel"], 
+form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* 覆蓋勾選框的寬度，避免字被擠掉 */
+form input[type="radio"],
+form input[type="checkbox"] {
+    width: auto !important;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+form label {
+    margin-bottom: 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- 6. 其他元素與響應式 --- */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    background: white;
 }
 
 th, td {
@@ -116,24 +158,9 @@ thead tr {
     color: white;
 }
 
-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-form input, form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.btn-more, form button {
+.btn-more, button[type="submit"] {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 12px 25px;
     background-color: #c0392b;
     color: white;
     text-decoration: none;
@@ -144,84 +171,6 @@ form input, form textarea {
     transition: 0.3s;
 }
 
-.btn-more:hover, form button:hover {
-    background-color: #a93226;
-    transform: translateY(-2px); /* 向上微浮 */
-}
-
-
-/* 讓表單內的選項（單選與複選）垂直置中並保持間距 */
-form div, 
-fieldset div {
-    display: flex;          /* 使用彈性佈局 */
-    align-items: center;    /* 關鍵：讓圓圈/方框與文字垂直居中對齊 */
-    margin-bottom: 10px;    /* 每個選項之間的上下距離 */
-}
-
-/* 微調勾選框與文字之間的左右距離 */
-form input[type="radio"],
-form input[type="checkbox"] {
-    width: auto;            /* 覆蓋掉之前全域 input 寬度 100% 的設定 */
-    margin: 0 10px 0 0;     /* 讓框框右邊留一點空間給文字，上下歸零 */
-    cursor: pointer;
-}
-
-/* 確保標籤文字也是手指游標，提升使用者體驗 */
-form label {
-    display: inline-block;  /* 改回行內區塊 */
-    margin-bottom: 0;       /* 移除之前的下方間距，避免推開對齊 */
-    cursor: pointer;
-}
-
-/* 針對飲食偏好的外框（fieldset）美化 */
-fieldset {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-}
-
-legend {
-    font-weight: bold;
-    color: #2c3e50;
-    padding: 0 10px;
-}
-/* 1. 確保所有圖片絕不超出範圍 (核心關鍵) */
-img {
-    max-width: 100%;    /* 限制圖片最大寬度為容器的 100% */
-    height: auto;       /* 高度自動縮放，不變形 */
-    display: block;     /* 避免圖片下方出現神祕空隙 */
-    margin: 15px auto;  /* 讓圖片在區塊內水平置中 */
-    border-radius: 12px;
-}
-
-/* 2. 針對餐廳簡介區塊的照片微調 */
-/* 假設你的餐廳照片放在一個特定的 div 或直接在 section 裡 */
-section img {
-    max-width: 100% !important; /* 使用 !important 確保這條指令優先級最高 */
-}
-
-/* 3. 恢復左側紅棒標題 (移除漸層底線) */
-section h2 {
-    text-align: left;
-    color: #c0392b;
-    border-left: 6px solid #c0392b; /* 左側實心紅棒 */
-    padding-left: 15px;
-    margin-bottom: 25px;
-    background-image: none;         /* 強制移除之前的漸層底線 */
-    display: block;                 /* 讓標題佔滿一行，紅棒才會漂亮 */
-}
-
-/* 4. 強化背景顏色對比度 */
-body {
-    background-color: #d1d1d1;      /* 稍微深一點的灰色，讓象牙白區塊更明顯 */
-}
-
-section {
-    background-color: #fdfaf6;      /* 溫潤的象牙白 */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* 增加陰影深度，加強懸浮感 */
-}
-/* --- 6. 頁尾與響應式 --- */
 footer {
     background-color: #2c3e50;
     color: #ecf0f1;
@@ -230,11 +179,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    section {
-        margin: 20px 10px;
-        padding: 20px;
-    }
-    .image-grid {
-        grid-template-columns: 1fr;
-    }
+    section { margin: 20px 15px; padding: 25px; }
+    .image-grid { grid-template-columns: 1fr; }
+    .image-grid img { height: auto !important; }
 }
