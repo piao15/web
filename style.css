@@ -186,6 +186,41 @@ legend {
     color: #2c3e50;
     padding: 0 10px;
 }
+/* 1. 確保所有圖片絕不超出範圍 (核心關鍵) */
+img {
+    max-width: 100%;    /* 限制圖片最大寬度為容器的 100% */
+    height: auto;       /* 高度自動縮放，不變形 */
+    display: block;     /* 避免圖片下方出現神祕空隙 */
+    margin: 15px auto;  /* 讓圖片在區塊內水平置中 */
+    border-radius: 12px;
+}
+
+/* 2. 針對餐廳簡介區塊的照片微調 */
+/* 假設你的餐廳照片放在一個特定的 div 或直接在 section 裡 */
+section img {
+    max-width: 100% !important; /* 使用 !important 確保這條指令優先級最高 */
+}
+
+/* 3. 恢復左側紅棒標題 (移除漸層底線) */
+section h2 {
+    text-align: left;
+    color: #c0392b;
+    border-left: 6px solid #c0392b; /* 左側實心紅棒 */
+    padding-left: 15px;
+    margin-bottom: 25px;
+    background-image: none;         /* 強制移除之前的漸層底線 */
+    display: block;                 /* 讓標題佔滿一行，紅棒才會漂亮 */
+}
+
+/* 4. 強化背景顏色對比度 */
+body {
+    background-color: #d1d1d1;      /* 稍微深一點的灰色，讓象牙白區塊更明顯 */
+}
+
+section {
+    background-color: #fdfaf6;      /* 溫潤的象牙白 */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* 增加陰影深度，加強懸浮感 */
+}
 /* --- 6. 頁尾與響應式 --- */
 footer {
     background-color: #2c3e50;
