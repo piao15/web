@@ -183,3 +183,25 @@ footer {
     .image-grid { grid-template-columns: 1fr; }
     .image-grid img { height: auto !important; }
 }
+
+/* 讓餐廳大圖更有「實體照片」的感覺 */
+figure img {
+    border: 8px solid #ffffff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* 讓表格標題更有聖誕森林的質感 */
+thead tr {
+    background-color: #1e3d1e; /* 改為深綠色 */
+}
+
+/* 按鈕點擊時的微小細節 */
+form button:hover {
+    letter-spacing: 2px;
+    background-color: #a93226;
+}
+
+/* 增加一個很淡很淡的紋理背景 (選擇性) */
+header {
+    background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%);
+}
