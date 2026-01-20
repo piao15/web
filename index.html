@@ -6,6 +6,9 @@
     <title>立紘小聚活動報名</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
+<canvas id="snow-canvas"></canvas>
+
 <body>
 
     <div id="header-placeholder"></div>
@@ -169,6 +172,53 @@
             timerElement.innerText = "🎉 活動正式開始囉！";
         }
     }, 1000);
+const canvas = document.getElementById('snow-canvas');
+const ctx = canvas.getContext('2d');
+
+// 讓畫布跟螢幕一樣大
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+const snowflakes = [];
+
+// 產生 150 朵雪花
+for (let i = 0; i < 150; i++) {
+    snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 3 + 1, // 半徑 1 到 4 之間
+        speed: Math.random() * 1 + 0.5 // 速度 0.5 到 1.5 之間
+    });
+}
+
+function drawSnow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空畫布
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+
+    snowflakes.forEach(snow => {
+        ctx.moveTo(snow.x, snow.y);
+        ctx.arc(snow.x, snow.y, snow.radius, 0, Math.PI * 2);
+
+        // 更新位置
+        snow.y += snow.speed;
+        
+        // 如果雪花掉出底部，就回到頂部重新開始
+        if (snow.y > canvas.height) {
+            snow.y = -10;
+            snow.x = Math.random() * canvas.width;
+        }
+    });
+
+    ctx.fill();
+    requestAnimationFrame(drawSnow); // 讓瀏覽器在下一幀繼續畫，形成動畫
+}
+
+drawSnow();
 </script>
 </body>
 </html>
