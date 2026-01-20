@@ -22,6 +22,9 @@
                 <li><strong>時間：</strong> 2026年12月24日(四) 18:30 - 21:00</li>
                 <li><strong>地點：</strong> 大嗑西式餐館 (台北市中正區濟南路二段18-3號)</li>
             </ul>
+<div id="timer" style="margin-top: 20px; padding: 15px; background-color: #1e3932; color: white; border-radius: 10px; text-align: center; font-size: 1.2em; font-weight: bold;">
+    ⏳ 倒數計時準備中...
+</div>
         </section>
 
         <section id="restaurant-intro">
@@ -129,20 +132,43 @@
     </script>
 
     <script>
-        const signupForm = document.getElementById('signup-form');
-
+    // === 功能 A：表單報名互動 ===
+    const signupForm = document.getElementById('signup-form');
+    if (signupForm) {
         signupForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // 🛑 阻止頁面跳轉
-            
+            event.preventDefault();
             const userName = document.getElementById('name').value;
             const messageDiv = document.getElementById('feedback-message');
-
-            // ✨ 顯示感謝訊息
             messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
-            
-            // 🧹 清空表單
             signupForm.reset();
         });
-    </script>
+    }
+
+    // === 功能 B：活動倒數計時器 ===
+    const targetDate = new Date("2026/12/24 18:30:00").getTime();
+
+    const countdown = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // 時間換算公式
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // 顯示到網頁上
+        const timerElement = document.getElementById("timer");
+        if (timerElement) {
+            timerElement.innerText = `距離活動開始還有：${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
+        }
+
+        // 時間到了停止更新
+        if (distance < 0) {
+            clearInterval(countdown);
+            timerElement.innerText = "🎉 活動正式開始囉！";
+        }
+    }, 1000);
+</script>
 </body>
 </html>
