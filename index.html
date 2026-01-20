@@ -1,3 +1,9 @@
+沒問題，這是一份幫你整理好的完整版 HTML 程式碼。我已經把 表單合併、加上正確的 ID，並把 JavaScript 修復好了。
+
+你可以直接複製這段代碼到你的 index.html 檔案中進行測試：
+
+HTML
+
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
@@ -24,22 +30,20 @@
             </ul>
         </section>
 
-<section id="restaurant-intro">
-    <h2>🍽️ 餐廳簡介</h2>
-    <div class="intro-content">
-        <p>大嗑西式餐館以法式烹調技法結合台灣在地食材聞名，不僅菜色精緻，溫馨的工業風裝潢更是適合聖誕小聚的最佳場所。</p>
-        <a href="https://www.facebook.com/duckyrestaurant/" 
-   class="btn-more" 
-   target="_blank" 
-   rel="noopener">
-   👉 前往餐廳官網查看菜單
-</a>
-        <figure>
-            <img src="image/location.jpg" alt="餐廳溫馨裝潢">
-            <figcaption>▲ 溫馨的用餐環境，營造輕鬆的過節氣氛</figcaption>
-        </figure>
-    </div>
-</section>
+        <section id="restaurant-intro">
+            <h2>🍽️ 餐廳簡介</h2>
+            <div class="intro-content">
+                <p>大嗑西式餐館以法式烹調技法結合台灣在地食材聞名，不僅菜色精緻，溫馨的工業風裝潢更是適合聖誕小聚的最佳場所。</p>
+                <a href="https://www.facebook.com/duckyrestaurant/" class="btn-more" target="_blank" rel="noopener">
+                    👉 前往餐廳官網查看菜單
+                </a>
+                <figure>
+                    <img src="image/location.jpg" alt="餐廳溫馨裝潢">
+                    <figcaption>▲ 溫馨的用餐環境，營造輕鬆的過節氣氛</figcaption>
+                </figure>
+            </div>
+        </section>
+
         <section id="gallery">
             <h2>📸 精彩照片</h2>
             <div class="image-grid">
@@ -51,7 +55,7 @@
 
         <section id="menu">
             <h2>📋 活動流程</h2>
-            <table border="1" style="width:100%; border-collapse: collapse;">
+            <table>
                 <thead>
                     <tr>
                         <th>時間</th>
@@ -68,46 +72,47 @@
 
         <section id="register">
             <h2>📝 立即報名</h2>
-<form action="#" method="POST">
-    <p>
-        <label for="name">您的姓名：</label>
-        <input type="text" id="name" name="name" required placeholder="請輸入全名">
-    </p>
+            <form id="signup-form" action="#" method="POST">
+                <p>
+                    <label for="name">您的姓名：</label>
+                    <input type="text" id="name" name="name" required placeholder="請輸入全名">
+                </p>
 
-    <p>
-        <label for="guests">攜帶眷屬人數：</label>
-        <input type="number" id="guests" name="guests" min="0" max="5" value="0">
-    </p>
+                <p>
+                    <label for="guests">攜帶眷屬人數：</label>
+                    <input type="number" id="guests" name="guests" min="0" max="5" value="0">
+                </p>
 
-    <p>
-        <label for="transport">交通方式：</label>
-        <select id="transport" name="transport">
-            <option value="mrt">捷運 / 公車</option>
-            <option value="car">自行開車 (需車位)</option>
-            <option value="walk">步行 / 騎車</option>
-        </select>
-    </p>
+                <p>
+                    <label for="transport">交通方式：</label>
+                    <select id="transport" name="transport">
+                        <option value="mrt">捷運 / 公車</option>
+                        <option value="car">自行開車 (需車位)</option>
+                        <option value="walk">步行 / 騎車</option>
+                    </select>
+                </p>
 
-    <fieldset>
-        <legend>飲食偏好：</legend>
-        <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
-        <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
-    </fieldset>
+                <fieldset>
+                    <legend>飲食偏好：</legend>
+                    <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
+                    <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
+                </fieldset>
 
-    <p>
-        <label>想參與的加碼活動：(可複選)</label><br>
-        <input type="checkbox" id="gift" name="extra" value="gift"> <label for="gift">交換禮物</label>
-        <input type="checkbox" id="draw" name="extra" value="draw"> <label for="draw">驚喜抽獎</label>
-        <input type="checkbox" id="photo" name="extra" value="photo"> <label for="photo">團體合照</label>
-    </p>
+                <p>
+                    <label>想參與的加碼活動：(可複選)</label><br>
+                    <input type="checkbox" id="gift" name="extra" value="gift"> <label for="gift">交換禮物</label>
+                    <input type="checkbox" id="draw" name="extra" value="draw"> <label for="draw">驚喜抽獎</label>
+                    <input type="checkbox" id="photo" name="extra" value="photo"> <label for="photo">團體合照</label>
+                </p>
 
-    <p>
-        <label for="notes">其他備註：</label>
-        <textarea id="notes" name="notes" rows="3"></textarea>
-    </p>
+                <p>
+                    <label for="notes">其他備註：</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </p>
 
-    <button type="submit">送出報名資料</button>
-</form>
+                <button type="submit">送出報名資料</button>
+            </form>
+            <div id="feedback-message" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center;"></div>
         </section>
     </main>
 
@@ -125,10 +130,25 @@
                 })
                 .catch(err => console.error(err));
         }
-
-        // 執行載入
         loadComponent('header-placeholder', 'components/header.html');
         loadComponent('footer-placeholder', 'components/footer.html');
+    </script>
+
+    <script>
+        const signupForm = document.getElementById('signup-form');
+
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // 🛑 阻止頁面跳轉
+            
+            const userName = document.getElementById('name').value;
+            const messageDiv = document.getElementById('feedback-message');
+
+            // ✨ 顯示感謝訊息
+            messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
+            
+            // 🧹 清空表單
+            signupForm.reset();
+        });
     </script>
 </body>
 </html>
