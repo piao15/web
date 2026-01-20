@@ -9,6 +9,18 @@ body {
 }
 
 
+/* 初始狀態：看不見且位置偏下 */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out; /* 動畫持續 0.8 秒 */
+}
+
+/* 啟動狀態：變回可見且回到原位 */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 #snow-canvas {
     position: fixed; /* 固定在螢幕上 */
@@ -19,15 +31,6 @@ body {
     pointer-events: none; /* 讓滑鼠點擊可以穿透畫布，才點得到按鈕 */
     z-index: 9999; /* 確保在最上層 */
 }
-
-
-
-
-
-
-
-
-
 /* --- 2. 頁首與導覽 --- */
 header {
     /* 放射狀深紅漸層，增加精緻儀式感 */
