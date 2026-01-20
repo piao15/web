@@ -14,12 +14,12 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <section id="intro">
+        <section id="intro" class="reveal">
             <h2>🎉 歡樂聖誕節特別活動</h2>
             <p>辛苦了一整年，邀請大家享受美食與交換禮物的樂趣！這是我們凝聚感情的好機會。</p>
         </section>
 
-        <section id="info">
+       <section id="info" class="reveal">
             <h2>ℹ️ 活動資訊</h2>
             <ul>
                 <li><strong>時間：</strong> 2026年12月24日(四) 18:30 - 21:00</li>
@@ -30,7 +30,7 @@
 </div>
         </section>
 
-        <section id="restaurant-intro">
+      <section id="restaurant-intro" class="reveal">
             <h2>🍽️ 餐廳簡介</h2>
             <div class="intro-content">
                 <p>大嗑西式餐館以法式烹調技法結合台灣在地食材聞名，不僅菜色精緻，溫馨的工業風裝潢更是適合聖誕小聚的最佳場所。</p>
@@ -217,8 +217,22 @@ function drawSnow() {
     ctx.fill();
     requestAnimationFrame(drawSnow); // 讓瀏覽器在下一幀繼續畫，形成動畫
 }
-
 drawSnow();
+// 1. 設定觀察員要執行的動作
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        // 如果元素進入畫面
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active'); // 加上 active class 啟動動畫
+        }
+    });
+}, {
+    threshold: 0.1 // 當元素出現 10% 的時候就觸發
+});
+
+// 2. 告訴觀察員要盯著哪些元素
+const revealElements = document.querySelectorAll('.reveal');
+revealElements.forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
