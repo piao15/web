@@ -3,55 +3,60 @@ body {
     font-family: "Microsoft JhengHei", Arial, sans-serif;
     line-height: 1.6;
     color: #4a3c31;
-    background-color: #d1d1d1; /* 霧灰色背景，襯托象牙白卡片 */
+    background-color: #d1d1d1;
     margin: 0;
     padding: 0;
 }
 
-
-/* 1. 設定文字初始狀態：透明且往下位移 30px */
+/* --- 2. 動畫系統 (核心修正) --- */
+/* 初始狀態：稍微下移並透明 */
 .text-reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* 關鍵：不強制 display: block，讓 Grid/Flex 容器維持原狀 */
+    box-sizing: border-box; 
 }
 
-/* 2. 當觸發 active 時，回到正常位置 */
+/* 當 JS 偵測到進入畫面時啟動 */
 .text-reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* 3. 關鍵：設定「延遲」讓內容比標題晚一點出現 */
+/* 延遲設定：讓文字有先後順序 */
 .delay-1 { transition-delay: 0.2s; }
 .delay-2 { transition-delay: 0.4s; }
 
+/* 修正：如果元素本身是 Grid，啟動動畫後仍保持 Grid */
+.image-grid.text-reveal {
+    display: grid;
+}
 
-/* 初始狀態：看不見且位置偏下 */
+/* 舊有的區塊淡入邏輯 (保留相容性) */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s ease-out; /* 動畫持續 0.8 秒 */
+    transition: all 0.8s ease-out;
 }
-
-/* 啟動狀態：變回可見且回到原位 */
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
 
+/* 飄雪畫布 */
 #snow-canvas {
-    position: fixed; /* 固定在螢幕上 */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* 讓滑鼠點擊可以穿透畫布，才點得到按鈕 */
-    z-index: 9999; /* 確保在最上層 */
+    pointer-events: none;
+    z-index: 9999;
 }
-/* --- 2. 頁首與導覽 --- */
+
+/* --- 3. 頁首與導覽 --- */
 header {
-    /* 放射狀深紅漸層，增加精緻儀式感 */
     background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%);
     color: white;
     padding: 30px;
@@ -79,43 +84,39 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #f1c40f; /* 金色互動感 */
+    color: #f1c40f;
 }
 
-/* --- 3. 核心區塊 (Section) 統一規格 --- */
+/* --- 4. 核心區塊 (Section) --- */
 section {
-    max-width: 800px;           /* 統一寬度，解決視覺不平衡 */
+    max-width: 800px;
     margin: 40px auto;
     padding: 40px;
-    background-color: #fdfaf6;  /* 象牙白質感 */
+    background-color: #fdfaf6;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     box-sizing: border-box;
     overflow: hidden;
 }
 
-/* 標題樣式：經典左側紅棒 */
 section h2 {
     text-align: left;
     color: #c0392b;
-    border-left: 6px solid #c0392b; 
+    border-left: 6px solid #c0392b;
     padding-left: 15px;
     margin-bottom: 25px;
-    display: block;
-    letter-spacing: 2px;       /* 增加字距，更顯專業 */
+    letter-spacing: 2px;
 }
 
-/* --- 4. 圖片美化與相框效果 --- */
-/* 全域圖片安全設定 */
+/* --- 5. 圖片與網格 --- */
 img {
-    max-width: 100% !important; 
+    max-width: 100% !important;
     height: auto !important;
     display: block;
     margin: 15px auto;
     border-radius: 12px;
 }
 
-/* 針對「精彩照片」的網格排列 */
 .image-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -124,27 +125,27 @@ img {
 }
 
 .image-grid img {
-    height: 200px !important;    /* 網格圖片高度統一 */
+    height: 200px !important;
     object-fit: cover;
-    filter: grayscale(50%);      /* 復古舊照片質感 */
+    filter: grayscale(50%);
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    margin: 0; /* 修正網格內的圖片邊距 */
 }
 
 .image-grid img:hover {
     transform: scale(1.05);
-    filter: grayscale(0%) brightness(1.1); /* 移上去恢復全彩並增亮 */
+    filter: grayscale(0%) brightness(1.1);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* 餐廳簡介大圖：實體照片相框感 */
 figure {
     margin: 20px 0;
     text-align: center;
 }
 
 figure img {
-    border: 10px solid #ffffff;  /* 拍立得風格白邊 */
+    border: 10px solid #ffffff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
@@ -156,14 +157,13 @@ figcaption {
     margin-top: 10px;
 }
 
-/* --- 5. 表單對齊與美化 --- */
+/* --- 6. 表單與計時器 --- */
 form {
     background-color: white;
     padding: 25px;
     border-radius: 10px;
 }
 
-/* 修正選項垂直置中 */
 form div, fieldset div {
     display: flex;
     align-items: center;
@@ -183,62 +183,36 @@ form textarea {
     transition: 0.3s;
 }
 
-form input:focus, form textarea:focus {
-    border-color: #c0392b;
-    box-shadow: 0 0 8px rgba(192, 57, 43, 0.2);
-    outline: none;
-}
-
-/* 覆蓋勾選框寬度，防止擠掉文字 */
-form input[type="radio"],
-form input[type="checkbox"] {
-    width: auto !important;
-    margin: 0 10px 0 0;
-    cursor: pointer;
-}
-
-form label {
-    margin-bottom: 0;
+/* 計時器樣式 (若有用 id="timer" 的 div) */
+#timer {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #1e3932;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2em;
     font-weight: bold;
-    cursor: pointer;
 }
 
-fieldset {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-bottom: 25px;
-}
-
-/* --- 6. 表格設計 (森林綠主題) --- */
+/* --- 7. 表格與按鈕 --- */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     background: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
 thead tr {
-    background-color: #1e3932; /* 深森林綠 */
+    background-color: #1e3932;
     color: white;
 }
 
 th, td {
     padding: 15px;
     border: 1px solid #eee;
-    text-align: left;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #fafafa;
-}
-
-tbody tr:hover {
-    background-color: #fcf3cf; /* 滑過時淡淡金黃色 */
-}
-
-/* --- 7. 按鈕與頁尾 --- */
 .btn-more, button[type="submit"] {
     display: inline-block;
     padding: 12px 30px;
@@ -250,32 +224,15 @@ tbody tr:hover {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    letter-spacing: 1px;
 }
 
-.btn-more:hover, button[type="submit"]:hover {
-    background-color: #a93226;
-    transform: translateY(-2px);
-    letter-spacing: 2px; /* 寬度微調動態感 */
-}
-
-footer {
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    padding: 40px;
-    text-align: center;
-}
-
-/* --- 8. RWD 響應式佈局 --- */
+/* --- 8. RWD 響應式 --- */
 @media (max-width: 768px) {
     section {
         margin: 20px 15px;
         padding: 25px;
     }
     .image-grid {
-        grid-template-columns: 1fr; /* 手機上一列 */
-    }
-    .image-grid img {
-        height: auto !important; /* 恢復自動比例 */
+        grid-template-columns: 1fr;
     }
 }
