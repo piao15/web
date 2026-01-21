@@ -78,22 +78,133 @@
                     <label for="guests">攜帶眷屬人數：</label>
                     <input type="number" id="guests" name="guests" min="0" max="5" value="0">
                 </p>
+                <p>
+                    <label for="transport">交通方式：</label>
+                    <select id="transport" name="transport">
+                        <option value="mrt">捷運 / 公車</option>
+                        <option value="car">自行開車 (需車位)</option>
+                        <option value="walk">步行 / 騎車</option>
+                    </select>
+                </p>
                 <fieldset>
                     <legend>飲食偏好：</legend>
                     <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
                     <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
                 </fieldset>
+                <p>
+                    <label>想參與的加碼活動：(可複選)</label><br>
+                    <input type="checkbox" id="gift" name="extra" value="gift"> <label for="gift">交換禮物</label>
+                    <input type="checkbox" id="draw" name="extra" value="draw"> <label for="draw">驚喜抽獎</label>
+                </p>
+                <p>
+                    <label for="notes">其他備註：</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </p>
                 <button type="submit">送出報名資料</button>
             </form>
-            <div id="feedback-message"></div>
+            <div id="feedback-message" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center;"></div>
         </section>
     </main>
 
     <div id="footer-placeholder"></div>
 
     <script>
-        // 載入組件、倒數計時、飄雪、觀察員動畫等 JS 代碼放在這裡...
-        // (此處省略你原本已寫好的 JS 部分)
+        // --- 1. 元件載入功能 ---
+        function loadComponent(id, file) {
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) throw new Error("找不到檔案：" + file);
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                })
+                .catch(err => console.error(err));
+        }
+        loadComponent('header-placeholder', 'components/header.html');
+        loadComponent('footer-placeholder', 'components/footer.html');
+
+        // --- 2. 表單報名互動 ---
+        const signupForm = document.getElementById('signup-form');
+        if (signupForm) {
+            signupForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const userName = document.getElementById('name').value;
+                const messageDiv = document.getElementById('feedback-message');
+                messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
+                signupForm.reset();
+            });
+        }
+
+        // --- 3. 活動倒數計時器 ---
+        const targetDate = new Date("2026/12/24 18:30:00").getTime();
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const timerElement = document.getElementById("timer");
+            if (timerElement) {
+                timerElement.innerText = `距離活動開始還有：${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
+            }
+            if (distance < 0) {
+                clearInterval(countdown);
+                timerElement.innerText = "🎉 活動正式開始囉！";
+            }
+        }, 1000);
+
+        // --- 4. 飄雪特效 ---
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const snowflakes = [];
+        for (let i = 0; i < 150; i++) {
+            snowflakes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speed: Math.random() * 1 + 0.5
+            });
+        }
+        function drawSnow() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            snowflakes.forEach(snow => {
+                ctx.moveTo(snow.x, snow.y);
+                ctx.arc(snow.x, snow.y, snow.radius, 0, Math.PI * 2);
+                snow.y += snow.speed;
+                if (snow.y > canvas.height) {
+                    snow.y = -10;
+                    snow.x = Math.random() * canvas.width;
+                }
+            });
+            ctx.fill();
+            requestAnimationFrame(drawSnow);
+        }
+        drawSnow();
+
+        // --- 5. 捲動觀察員動畫 (合併監控 .reveal 與 .text-reveal) ---
+        const observerOptions = { threshold: 0.1 };
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // 觀察所有需要動畫的元素
+        const elementsToAnimate = document.querySelectorAll('.reveal, .text-reveal');
+        elementsToAnimate.forEach(el => animationObserver.observe(el));
     </script>
 </body>
 </html>
