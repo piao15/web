@@ -9,6 +9,24 @@ body {
 }
 
 
+/* 1. 設定文字初始狀態：透明且往下位移 30px */
+.text-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 2. 當觸發 active 時，回到正常位置 */
+.text-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3. 關鍵：設定「延遲」讓內容比標題晚一點出現 */
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
+
 /* 初始狀態：看不見且位置偏下 */
 .reveal {
     opacity: 0;

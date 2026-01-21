@@ -19,24 +19,29 @@
             <p>辛苦了一整年，邀請大家享受美食與交換禮物的樂趣！這是我們凝聚感情的好機會。</p>
         </section>
 
-       <section id="info" class="reveal">
-            <h2>ℹ️ 活動資訊</h2>
-            <ul>
-                <li><strong>時間：</strong> 2026年12月24日(四) 18:30 - 21:00</li>
-                <li><strong>地點：</strong> 大嗑西式餐館 (台北市中正區濟南路二段18-3號)</li>
-            </ul>
+<section id="info">
+    <h2 class="text-reveal">ℹ️ 活動資訊</h2>
+
+    <ul class="text-reveal delay-1">
+        <li><strong>時間：</strong> 2026年12月24日(四) 18:30</li>
+        <li><strong>地點：</strong> 大嗑西式餐館</li>
+    </ul>
+</section>
 <div id="timer" style="margin-top: 20px; padding: 15px; background-color: #1e3932; color: white; border-radius: 10px; text-align: center; font-size: 1.2em; font-weight: bold;">
     ⏳ 倒數計時準備中...
 </div>
         </section>
 
-      <section id="restaurant-intro" class="reveal">
-            <h2>🍽️ 餐廳簡介</h2>
-            <div class="intro-content">
-                <p>大嗑西式餐館以法式烹調技法結合台灣在地食材聞名，不僅菜色精緻，溫馨的工業風裝潢更是適合聖誕小聚的最佳場所。</p>
-                <a href="https://www.facebook.com/duckyrestaurant/" class="btn-more" target="_blank" rel="noopener">
-                    👉 前往餐廳官網查看菜單
-                </a>
+<section id="restaurant-intro">
+    <h2 class="text-reveal">🍽️ 餐廳簡介</h2>
+    <div class="intro-content">
+        <p class="text-reveal delay-1">
+            大嗑西式餐館以法式烹調技法結合台灣在地食材聞名...
+        </p>
+        
+        <a href="..." class="btn-more text-reveal delay-2">👉 前往餐廳官網查看菜單</a>
+    </div>
+</section>
                 <figure>
                     <img src="image/location.jpg" alt="餐廳溫馨裝潢">
                     <figcaption>▲ 溫馨的用餐環境，營造輕鬆的過節氣氛</figcaption>
@@ -233,6 +238,22 @@ const observer = new IntersectionObserver((entries) => {
 // 2. 告訴觀察員要盯著哪些元素
 const revealElements = document.querySelectorAll('.reveal');
 revealElements.forEach(el => observer.observe(el));
+
+
+// 建立文字觀察員 🕵️‍♂️
+const textObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // 當元素進入畫面，加上 active 啟動 CSS 動畫
+            entry.target.classList.add('active');
+        }
+    });
+}, { threshold: 0.1 }); // 看到 10% 就觸發
+
+// 抓取所有帶有 .text-reveal 的標籤並開始觀察
+const elementsToWatch = document.querySelectorAll('.text-reveal');
+elementsToWatch.forEach(el => textObserver.observe(el));
+
 </script>
 </body>
 </html>
