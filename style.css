@@ -45,6 +45,26 @@ body {
     pointer-events: none; /* 讓滑鼠點擊可以穿透畫布，才點得到按鈕 */
     z-index: 9999; /* 確保在最上層 */
 }
+
+/* 📍 固定導覽列的樣式 */
+.header-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000; /* 確保在最上層 */
+    background-color: rgba(44, 62, 80, 0.95); /* 深藍色半透明 */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    animation: slideDown 0.5s ease-in-out; /* 滑下動畫 */
+}
+
+/* 🎬 定義滑下的動作 */
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+
 /* --- 2. 頁首與導覽 --- */
 header {
     /* 放射狀深紅漸層，增加精緻儀式感 */
