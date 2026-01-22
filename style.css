@@ -236,3 +236,22 @@ th, td {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* 確保 footer 的容器不受上方排版影響 */
+#footer-placeholder {
+    clear: both;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* 針對 footer 本身的樣式強化 */
+footer {
+    width: 100vw;       /* 強制寬度為視窗寬度 */
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%); /* 這兩行可以確保它水平置中並撐開 */
+    box-sizing: border-box;
+}
