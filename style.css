@@ -238,20 +238,20 @@ th, td {
 }
 
 
-/* 確保 footer 的容器不受上方排版影響 */
+/* 1. 確保占位符本身不縮小 */
 #footer-placeholder {
-    clear: both;
-    display: block;
     width: 100%;
-    margin: 0;
-    padding: 0;
+    display: block;
+    clear: both;
 }
 
-/* 針對 footer 本身的樣式強化 */
+/* 2. 強制 footer 撐滿全螢幕並置中內容 */
 footer {
-    width: 100vw;       /* 強制寬度為視窗寬度 */
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%); /* 這兩行可以確保它水平置中並撐開 */
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 40px 0; /* 垂直內距 40px，水平 0 */
+    text-align: center;
+    width: 100%;       /* 撐滿父層寬度 */
+    display: block;
     box-sizing: border-box;
 }
