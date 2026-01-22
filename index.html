@@ -235,7 +235,7 @@ revealElements.forEach(el => observer.observe(el));
 
 
 </script>
-</body>
+
 
 // === 功能 C：導覽列動態降臨 ===
 const headerPlaceholder = document.getElementById('header-placeholder');
@@ -243,10 +243,11 @@ const introSection = document.getElementById('intro');
 
 const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        // 如果 intro 區塊「離開」了畫面（isIntersecting 為 false）
+        // 當 intro 區塊「離開」視窗時 (isIntersecting 為 false)
         if (!entry.isIntersecting) {
             headerPlaceholder.classList.add('header-fixed');
         } else {
+            // 回到頂部時移除，變回原本的樣子
             headerPlaceholder.classList.remove('header-fixed');
         }
     });
@@ -256,4 +257,5 @@ const navObserver = new IntersectionObserver((entries) => {
 
 navObserver.observe(introSection);
 
+</body>
 </html>
