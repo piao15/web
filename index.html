@@ -233,10 +233,6 @@ const observer = new IntersectionObserver((entries) => {
 const revealElements = document.querySelectorAll('.reveal, .slide-in-left');
 revealElements.forEach(el => observer.observe(el));
 
-
-</script>
-
-
 // === 功能 C：導覽列動態降臨 ===
 const headerPlaceholder = document.getElementById('header-placeholder');
 const introSection = document.getElementById('intro');
@@ -256,6 +252,6 @@ const navObserver = new IntersectionObserver((entries) => {
 });
 
 navObserver.observe(introSection);
-
+</script>
 </body>
 </html>
