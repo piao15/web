@@ -68,8 +68,7 @@
                 </tbody>
             </table>
         </section>
-
-       <section id="register">
+<section id="register">
     <h2>📝 立即報名</h2>
     <form id="signup-form" action="#" method="POST">
         <p>
@@ -84,42 +83,39 @@
             <label for="guests">攜帶眷屬人數：</label>
             <input type="number" id="guests" name="guests" min="0" max="5" value="0">
         </p>
-        
-        </form>
+
+        <p>
+            <label for="transport">交通方式：</label>
+            <select id="transport" name="transport">
+                <option value="mrt">捷運 / 公車</option>
+                <option value="car">自行開車 (需車位)</option>
+                <option value="walk">步行 / 騎車</option>
+            </select>
+        </p>
+
+        <fieldset>
+            <legend>飲食偏好：</legend>
+            <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
+            <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
+        </fieldset>
+
+        <p>
+            <label>想參與的加碼活動：(可複選)</label><br>
+            <input type="checkbox" id="gift" name="extra" value="gift"> <label for="gift">交換禮物</label>
+            <input type="checkbox" id="draw" name="extra" value="draw"> <label for="draw">驚喜抽獎</label>
+            <input type="checkbox" id="photo" name="extra" value="photo"> <label for="photo">團體合照</label>
+        </p>
+
+        <p>
+            <label for="notes">其他備註：</label>
+            <textarea id="notes" name="notes" rows="3"></textarea>
+        </p>
+
+        <button type="submit">送出報名資料</button>
+    </form>
+    
+    <div id="feedback-message" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center;"></div>
 </section>
- </p>
-
-              <p>
-                    <label for="transport">交通方式：</label>
-                    <select id="transport" name="transport">
-                        <option value="mrt">捷運 / 公車</option>
-                        <option value="car">自行開車 (需車位)</option>
-                        <option value="walk">步行 / 騎車</option>
-                    </select>
-                </p>
-
-                <fieldset>
-                    <legend>飲食偏好：</legend>
-                    <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
-                    <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
-                </fieldset>
-
-                <p>
-                    <label>想參與的加碼活動：(可複選)</label><br>
-                    <input type="checkbox" id="gift" name="extra" value="gift"> <label for="gift">交換禮物</label>
-                    <input type="checkbox" id="draw" name="extra" value="draw"> <label for="draw">驚喜抽獎</label>
-                    <input type="checkbox" id="photo" name="extra" value="photo"> <label for="photo">團體合照</label>
-                </p>
-
-                <p>
-                    <label for="notes">其他備註：</label>
-                    <textarea id="notes" name="notes" rows="3"></textarea>
-                </p>
-
-                <button type="submit">送出報名資料</button>
-            </form>
-            <div id="feedback-message" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center;"></div>
-        </section>
     </main>
 
     <div id="footer-placeholder"></div>
