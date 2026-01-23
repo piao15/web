@@ -316,20 +316,27 @@ footer {
 }
 
 
-/* 📱 針對手機小螢幕的調整 */
+/* 📱 針對手機小螢幕 (375px - 400px) 的兩行排列調整 */
 @media (max-width: 520px) {
     #header-placeholder nav ul {
         display: flex;
-        flex-wrap: nowrap; /* 強制不換行 */
-        justify-content: space-around; /* 平均分配空間 */
-        padding: 0;
+        flex-wrap: wrap; /* 1. 允許換行 */
+        justify-content: center; /* 2. 讓換行後的項目也居中 */
+        padding: 5px 0;
+        gap: 10px; 
     }
 
     #header-placeholder nav ul li {
-        margin: 0 5px; /* 縮小左右間距 */
+        /* 3. 設定寬度，讓第一行排 3 個 (30% x 3 = 90%) */
+        flex: 0 1 30%; 
+        min-width: 80px; 
+        margin: 5px 0;
+        text-align: center;
     }
 
     #header-placeholder nav ul li a {
-        font-size: 14px; /* 稍微縮小字體 */
+        font-size: 15px; 
+        display: block;
+        padding: 5px;
     }
 }
