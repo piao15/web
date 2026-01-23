@@ -134,18 +134,32 @@
     </script>
 
     <script>
-    // === 功能 A：表單報名互動 ===
-    const signupForm = document.getElementById('signup-form');
-    if (signupForm) {
-        signupForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const userName = document.getElementById('name').value;
-            const messageDiv = document.getElementById('feedback-message');
-            messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
-            signupForm.reset();
-        });
-    }
+// === 功能 A：表單報名互動（優化版） ===
+const signupForm = document.getElementById('signup-form');
 
+if (signupForm) {
+    signupForm.addEventListener('submit', function(event) {
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('name-error');
+        const messageDiv = document.getElementById('feedback-message');
+
+        // 🕵️ 檢查名字長度
+        if (nameInput.value.length === 0) {
+            event.preventDefault(); // 🛑 阻止送出
+            nameError.style.display = 'block'; // 📢 顯示警告
+            nameInput.style.borderColor = '#e74c3c'; // 🎨 框框變紅
+            messageDiv.innerText = ""; // 清空之前的成功訊息
+        } else {
+            event.preventDefault(); // 先阻止預設跳轉以便顯示成功訊息
+            nameError.style.display = 'none'; // ✅ 隱藏錯誤
+            nameInput.style.borderColor = '#2c3e50'; // 恢復原色
+            
+            const userName = nameInput.value;
+            messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
+            signupForm.reset(); // 清空表單
+        }
+    });
+}
     // === 功能 B：活動倒數計時器 ===
     const targetDate = new Date("2026/12/24 18:30:00").getTime();
 
