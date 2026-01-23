@@ -314,3 +314,22 @@ footer {
         height: auto !important; /* 恢復自動比例 */
     }
 }
+
+
+/* 📱 針對手機小螢幕的調整 */
+@media (max-width: 520px) {
+    #header-placeholder nav ul {
+        display: flex;
+        flex-wrap: nowrap; /* 強制不換行 */
+        justify-content: space-around; /* 平均分配空間 */
+        padding: 0;
+    }
+
+    #header-placeholder nav ul li {
+        margin: 0 5px; /* 縮小左右間距 */
+    }
+
+    #header-placeholder nav ul li a {
+        font-size: 14px; /* 稍微縮小字體 */
+    }
+}
