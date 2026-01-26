@@ -82,13 +82,15 @@
                         🎅 hohoho！聖誕老人需要知道您的名字才能送禮物喔！
                     </span>
                 </p>
-
-                <p>
-                    <label for="guests">攜帶眷屬人數：</label>
-                    <input type="number" id="guests" name="guests" min="0" max="5" value="0">
-                </p>
-
-                <p>
+<p>
+    <label for="guests">攜帶眷屬人數：</label>
+    <input type="number" id="guests" name="guests" min="0" max="5" value="0" aria-describedby="guests-desc">
+    
+    <span id="guests-desc" style="font-size: 0.8em; color: #666; display: block; margin-top: 5px;">
+        (溫馨提示：因場地限制，每人最多可攜帶 5 位親友) 👨‍👩‍👧‍👦
+    </span>
+</p>
+               <p>
                     <label for="transport">交通方式：</label>
                     <select id="transport" name="transport">
                         <option value="mrt">捷運 / 公車</option>
@@ -122,8 +124,9 @@
 
                 <button type="submit">送出報名資料</button>
             </form>
-            
-            <div id="feedback-message" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center;" aria-live="polite"></div>
+
+<div id="feedback-message" tabindex="-1" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center; outline: none;" aria-live="polite"></div>
+
         </section>
     </main>
 
@@ -145,29 +148,34 @@
         loadComponent('header-placeholder', 'components/header.html');
         loadComponent('footer-placeholder', 'components/footer.html');
 
-        // === 功能 A：表單報名互動（優化版） ===
-        const signupForm = document.getElementById('signup-form');
-        if (signupForm) {
-            signupForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // 阻止預設送出行為
-                const nameInput = document.getElementById('name');
-                const nameError = document.getElementById('name-error');
-                const messageDiv = document.getElementById('feedback-message');
+// === 功能 A：表單報名互動 ===
+const signupForm = document.getElementById('signup-form');
+if (signupForm) {
+    signupForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止頁面跳轉
+        
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('name-error');
+        const messageDiv = document.getElementById('feedback-message');
 
-                if (nameInput.value.trim().length === 0) {
-                    nameError.style.display = 'block';
-                    nameInput.style.borderColor = '#e74c3c';
-                    messageDiv.innerText = "";
-                } else {
-                    nameError.style.display = 'none';
-                    nameInput.style.borderColor = '#2c3e50';
-                    const userName = nameInput.value;
-                    messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
-                    signupForm.reset();
-                }
-            });
+        // 🟢 檢查姓名是否為空
+        if (nameInput.value.trim().length === 0) {
+            nameError.style.display = 'block';         // 顯示錯誤訊息
+            nameInput.style.borderColor = '#e74c3c';   // 框框變紅
+            messageDiv.innerText = "";                 // 清空成功訊息
+            
+            // ✨ 讓使用者能直接開始打字，不用再點一次滑鼠
+            nameInput.focus(); 
+        } else {
+            // 🔵 驗證成功的邏輯...
+            nameError.style.display = 'none';
+            nameInput.style.borderColor = '#2c3e50';
+            messageDiv.innerText = "🎉 感謝您的報名，" + nameInput.value + "！";
+            signupForm.reset();
+            messageDiv.focus(); // 成功後焦點移到訊息區
         }
-
+    });
+}
         // === 功能 B：活動倒數計時器 ===
         const targetDate = new Date("2026/12/24 18:30:00").getTime();
         const countdown = setInterval(function() {
