@@ -8,47 +8,49 @@
 </head>
 
 <body>
-
     <div id="header-placeholder"></div>
-    <canvas id="snow-canvas"></canvas>
-
+    <canvas id="snow-canvas" aria-hidden="true"></canvas> 
+    
     <main>
+        <h1 style="text-align: center; margin-top: 20px;">立紘小聚活動報名</h1>
+
         <section id="intro" class="reveal">
             <h2>🎉 歡樂聖誕節特別活動</h2>
             <p>辛苦了一整年，邀請大家享受美食與交換禮物的樂趣！這是我們凝聚感情的好機會。</p>
         </section>
 
-       <section id="info" class="reveal">
+        <section id="info" class="reveal">
             <h2>ℹ️ 活動資訊</h2>
             <ul>
                 <li><strong>時間：</strong> 2026年12月24日(四) 18:30 - 21:00</li>
                 <li><strong>地點：</strong> 大嗑西式餐館 (台北市中正區濟南路二段18-3號)</li>
             </ul>
-<div id="timer" style="margin-top: 20px; padding: 15px; background-color: #1e3932; color: white; border-radius: 10px; text-align: center; font-size: 1.2em; font-weight: bold;">
-    ⏳ 倒數計時準備中...
-</div>
+            <div id="timer" style="margin-top: 20px; padding: 15px; background-color: #1e3932; color: white; border-radius: 10px; text-align: center; font-size: 1.2em; font-weight: bold;">
+                ⏳ 倒數計時準備中...
+            </div>
         </section>
-<section id="restaurant-intro" class="reveal">
-    <h2 class="slide-in-left">🍽️ 餐廳簡介</h2>
-    <div class="intro-content">
-        <p class="slide-in-left">大嗑西式餐館以法式烹調技法結合台灣在地食材聞名，不僅菜色精緻，溫馨的工業風裝潢更是適合聖誕小聚的最佳場所。</p>
-        
-        <a href="https://www.facebook.com/duckyrestaurant/" class="btn-more slide-in-left delay-1" target="_blank" rel="noopener">
-            👉 前往餐廳官網查看菜單
-        </a>
 
-        <figure class="slide-in-left delay-2">
-            <img src="image/location.jpg" alt="餐廳溫馨裝潢">
-            <figcaption>▲ 溫馨的用餐環境，營造輕鬆的過節氣氛</figcaption>
-        </figure>
-    </div>
-</section>
+        <section id="restaurant-intro" class="reveal">
+            <h2>🍽️ 餐廳簡介</h2>
+            <div class="intro-content">
+                <p>大嗑西式餐館以法式烹調技法結合台灣在地食材聞名，不僅菜色精緻，溫馨的工業風裝潢更是適合聖誕小聚的最佳場所。</p>
+                <a href="https://www.facebook.com/duckyrestaurant/" class="btn-more" target="_blank" rel="noopener">
+                    查看大嗑西式餐館菜單 (前往 Facebook 官網)
+                </a>
+
+                <figure>
+                    <img src="image/location.jpg" alt="大嗑西式餐館溫馨的工業風室內裝潢">
+                    <figcaption>▲ 溫馨的用餐環境，營造輕鬆的過節氣氛</figcaption>
+                </figure>
+            </div>
+        </section>
+
         <section id="gallery">
             <h2>📸 精彩照片</h2>
             <div class="image-grid">
-                <img src="image/location2.jpg" alt="餐廳環境" style="width:100%; max-width:300px;">
-                <img src="image/pizza.jpg" alt="美味披薩" style="width:100%; max-width:300px;">
-                <img src="image/picture.jpg" alt="活動合照" style="width:100%; max-width:300px;">
+                <img src="image/location2.jpg" alt="餐館內的木質餐桌與柔和燈光" style="width:100%; max-width:300px;">
+                <img src="image/pizza.jpg" alt="大嗑西式餐館的特色手工披薩" style="width:100%; max-width:300px;">
+                <img src="image/picture.jpg" alt="過往活動中大家開心用餐的合照" style="width:100%; max-width:300px;">
             </div>
         </section>
 
@@ -57,8 +59,8 @@
             <table>
                 <thead>
                     <tr>
-                        <th>時間</th>
-                        <th>內容</th>
+                        <th scope="col">時間</th>
+                        <th scope="col">內容</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,59 +70,61 @@
                 </tbody>
             </table>
         </section>
-<section id="register">
-    <h2>📝 立即報名</h2>
-    <form id="signup-form" action="#" method="POST">
-        <p>
-            <label for="name">您的姓名：</label>
-            <input type="text" id="name" name="name" placeholder="請輸入全名">
-            <span id="name-error" style="color: #e74c3c; font-size: 0.9em; display: none;">
-                🎅 hohoho！聖誕老人需要知道您的名字才能送禮物喔！
-            </span>
-        </p>
 
-        <p>
-            <label for="guests">攜帶眷屬人數：</label>
-            <input type="number" id="guests" name="guests" min="0" max="5" value="0">
-        </p>
+        <section id="register">
+            <h2>📝 立即報名</h2>
+            <form id="signup-form" action="#" method="POST" novalidate>
+                <p>
+                    <label for="name">您的姓名：</label>
+                    <input type="text" id="name" name="name" placeholder="請輸入全名">
+                    <span id="name-error" style="color: #e74c3c; font-size: 0.9em; display: none;" aria-live="polite">
+                        🎅 hohoho！聖誕老人需要知道您的名字才能送禮物喔！
+                    </span>
+                </p>
 
-        <p>
-            <label for="transport">交通方式：</label>
-            <select id="transport" name="transport">
-                <option value="mrt">捷運 / 公車</option>
-                <option value="car">自行開車 (需車位)</option>
-                <option value="walk">步行 / 騎車</option>
-            </select>
-        </p>
+                <p>
+                    <label for="guests">攜帶眷屬人數：</label>
+                    <input type="number" id="guests" name="guests" min="0" max="5" value="0">
+                </p>
 
-        <fieldset>
-            <legend>飲食偏好：</legend>
-            <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
-            <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
-        </fieldset>
+                <p>
+                    <label for="transport">交通方式：</label>
+                    <select id="transport" name="transport">
+                        <option value="mrt">捷運 / 公車</option>
+                        <option value="car">自行開車 (需車位)</option>
+                        <option value="walk">步行 / 騎車</option>
+                    </select>
+                </p>
 
-        <p>
-            <label>想參與的加碼活動：(可複選)</label><br>
-            <input type="checkbox" id="gift" name="extra" value="gift"> <label for="gift">交換禮物</label>
-            <input type="checkbox" id="draw" name="extra" value="draw"> <label for="draw">驚喜抽獎</label>
-            <input type="checkbox" id="photo" name="extra" value="photo"> <label for="photo">團體合照</label>
-        </p>
+                <fieldset>
+                    <legend>飲食偏好：</legend>
+                    <input type="radio" id="meat" name="diet" value="meat" checked> <label for="meat">葷食</label>
+                    <input type="radio" id="veg" name="diet" value="vegetarian"> <label for="veg">素食</label>
+                </fieldset>
 
-        <p>
-            <label for="notes">其他備註：</label>
-            <textarea id="notes" name="notes" rows="3"></textarea>
-        </p>
+                <p>
+                    <label>想參與的加碼活動：(可複選)</label><br>
+                    <input type="checkbox" id="gift" name="extra" value="gift"> <label for="gift">交換禮物</label>
+                    <input type="checkbox" id="draw" name="extra" value="draw"> <label for="draw">驚喜抽獎</label>
+                    <input type="checkbox" id="photo" name="extra" value="photo"> <label for="photo">團體合照</label>
+                </p>
 
-        <button type="submit">送出報名資料</button>
-    </form>
-    
-    <div id="feedback-message" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center;"></div>
-</section>
+                <p>
+                    <label for="notes">其他備註：</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </p>
+
+                <button type="submit">送出報名資料</button>
+            </form>
+            
+            <div id="feedback-message" style="margin-top: 20px; font-weight: bold; color: #c0392b; text-align: center;" aria-live="polite"></div>
+        </section>
     </main>
 
     <div id="footer-placeholder"></div>
 
     <script>
+        // === 元件載入 ===
         function loadComponent(id, file) {
             fetch(file)
                 .then(response => {
@@ -134,141 +138,109 @@
         }
         loadComponent('header-placeholder', 'components/header.html');
         loadComponent('footer-placeholder', 'components/footer.html');
+
+        // === 功能 A：表單報名互動（優化版） ===
+        const signupForm = document.getElementById('signup-form');
+        if (signupForm) {
+            signupForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // 阻止預設送出行為
+                const nameInput = document.getElementById('name');
+                const nameError = document.getElementById('name-error');
+                const messageDiv = document.getElementById('feedback-message');
+
+                if (nameInput.value.trim().length === 0) {
+                    nameError.style.display = 'block';
+                    nameInput.style.borderColor = '#e74c3c';
+                    messageDiv.innerText = "";
+                } else {
+                    nameError.style.display = 'none';
+                    nameInput.style.borderColor = '#2c3e50';
+                    const userName = nameInput.value;
+                    messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
+                    signupForm.reset();
+                }
+            });
+        }
+
+        // === 功能 B：活動倒數計時器 ===
+        const targetDate = new Date("2026/12/24 18:30:00").getTime();
+        const countdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const timerElement = document.getElementById("timer");
+            if (timerElement) {
+                timerElement.innerText = `距離活動開始還有：${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
+            }
+            if (distance < 0) {
+                clearInterval(countdown);
+                timerElement.innerText = "🎉 活動正式開始囉！";
+            }
+        }, 1000);
+
+        // === 功能 C：雪花動畫 ===
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        const snowflakes = [];
+        for (let i = 0; i < 150; i++) {
+            snowflakes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speed: Math.random() * 1 + 0.5
+            });
+        }
+        function drawSnow() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            snowflakes.forEach(snow => {
+                ctx.moveTo(snow.x, snow.y);
+                ctx.arc(snow.x, snow.y, snow.radius, 0, Math.PI * 2);
+                snow.y += snow.speed;
+                if (snow.y > canvas.height) {
+                    snow.y = -10;
+                    snow.x = Math.random() * canvas.width;
+                }
+            });
+            ctx.fill();
+            requestAnimationFrame(drawSnow);
+        }
+        drawSnow();
+
+        // === 功能 D：捲動揭露動畫 ===
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => observer.observe(el));
+
+        // === 功能 E：導覽列固定邏輯 ===
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        const introSection = document.getElementById('intro');
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    headerPlaceholder.classList.add('header-fixed');
+                } else {
+                    headerPlaceholder.classList.remove('header-fixed');
+                }
+            });
+        }, { threshold: 0 });
+        navObserver.observe(introSection);
     </script>
-
-    <script>
-// === 功能 A：表單報名互動（優化版） ===
-const signupForm = document.getElementById('signup-form');
-
-if (signupForm) {
-    signupForm.addEventListener('submit', function(event) {
-        const nameInput = document.getElementById('name');
-        const nameError = document.getElementById('name-error');
-        const messageDiv = document.getElementById('feedback-message');
-
-        // 🕵️ 檢查名字長度
-        if (nameInput.value.length === 0) {
-            event.preventDefault(); // 🛑 阻止送出
-            nameError.style.display = 'block'; // 📢 顯示警告
-            nameInput.style.borderColor = '#e74c3c'; // 🎨 框框變紅
-            messageDiv.innerText = ""; // 清空之前的成功訊息
-        } else {
-            event.preventDefault(); // 先阻止預設跳轉以便顯示成功訊息
-            nameError.style.display = 'none'; // ✅ 隱藏錯誤
-            nameInput.style.borderColor = '#2c3e50'; // 恢復原色
-            
-            const userName = nameInput.value;
-            messageDiv.innerText = "🎉 感謝您的報名，" + userName + "！我們聖誕節見！";
-            signupForm.reset(); // 清空表單
-        }
-    });
-}
-    // === 功能 B：活動倒數計時器 ===
-    const targetDate = new Date("2026/12/24 18:30:00").getTime();
-
-    const countdown = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        // 時間換算公式
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // 顯示到網頁上
-        const timerElement = document.getElementById("timer");
-        if (timerElement) {
-            timerElement.innerText = `距離活動開始還有：${days}天 ${hours}時 ${minutes}分 ${seconds}秒`;
-        }
-
-        // 時間到了停止更新
-        if (distance < 0) {
-            clearInterval(countdown);
-            timerElement.innerText = "🎉 活動正式開始囉！";
-        }
-    }, 1000);
-const canvas = document.getElementById('snow-canvas');
-const ctx = canvas.getContext('2d');
-
-// 讓畫布跟螢幕一樣大
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-const snowflakes = [];
-
-// 產生 150 朵雪花
-for (let i = 0; i < 150; i++) {
-    snowflakes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 3 + 1, // 半徑 1 到 4 之間
-        speed: Math.random() * 1 + 0.5 // 速度 0.5 到 1.5 之間
-    });
-}
-
-function drawSnow() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空畫布
-    ctx.fillStyle = "white";
-    ctx.beginPath();
-
-    snowflakes.forEach(snow => {
-        ctx.moveTo(snow.x, snow.y);
-        ctx.arc(snow.x, snow.y, snow.radius, 0, Math.PI * 2);
-
-        // 更新位置
-        snow.y += snow.speed;
-        
-        // 如果雪花掉出底部，就回到頂部重新開始
-        if (snow.y > canvas.height) {
-            snow.y = -10;
-            snow.x = Math.random() * canvas.width;
-        }
-    });
-
-    ctx.fill();
-    requestAnimationFrame(drawSnow); // 讓瀏覽器在下一幀繼續畫，形成動畫
-}
-drawSnow();
-// 1. 設定觀察員要執行的動作
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        // 如果元素進入畫面
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active'); // 加上 active class 啟動動畫
-        }
-    });
-}, {
-    threshold: 0.1 // 當元素出現 10% 的時候就觸發
-});
-
-// 2. 告訴觀察員要盯著哪些元素
-const revealElements = document.querySelectorAll('.reveal, .slide-in-left');
-revealElements.forEach(el => observer.observe(el));
-
-// === 功能 C：導覽列動態降臨 ===
-const headerPlaceholder = document.getElementById('header-placeholder');
-const introSection = document.getElementById('intro');
-
-const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        // 當 intro 區塊「離開」視窗時 (isIntersecting 為 false)
-        if (!entry.isIntersecting) {
-            headerPlaceholder.classList.add('header-fixed');
-        } else {
-            // 回到頂部時移除，變回原本的樣子
-            headerPlaceholder.classList.remove('header-fixed');
-        }
-    });
-}, {
-    threshold: 0 // 只要區塊完全消失就觸發
-});
-
-navObserver.observe(introSection);
-</script>
 </body>
 </html>

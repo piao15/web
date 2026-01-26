@@ -340,3 +340,15 @@ footer {
         padding: 5px;
     }
 }
+
+
+/* 無障礙焦點樣式：當使用鍵盤選中時，顯示亮眼的黃色外框 */
+:focus {
+    outline: 4px solid #f1c40f !important;
+    outline-offset: 2px;
+}
+
+/* 確保按鈕和連結在獲得焦點時也有明顯變化 */
+.btn-more:focus, button:focus, input:focus, select:focus, textarea:focus {
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.8);
+}
