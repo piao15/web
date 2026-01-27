@@ -176,12 +176,13 @@ figure {
     margin: 20px 0;
     text-align: center;
 }
-
 figure img {
-    border: 10px solid #ffffff;  /* 拍立得風格白邊 */
+    max-width: 100%;             /* 確保寬度不超過父層 */
+    box-sizing: border-box;     /* ✨ 關鍵：將邊框計算在寬度內 */
+    border: 10px solid #ffffff; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    height: auto;
 }
-
 figcaption {
     text-align: center;
     font-size: 0.9em;
