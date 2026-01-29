@@ -255,16 +255,36 @@ if (signupForm) {
             });
         }, { threshold: 0 });
         navObserver.observe(introSection);
-// === 功能 F：漢堡選單開關 (使用事件代理) ===
+// === 功能 F：互動控制 (選單與滾動) ===
+
+// 1. 處理所有點擊事件 🖱️
 document.addEventListener('click', function(e) {
-    // 檢查點擊的是否是漢堡按鈕，或者是按鈕內的圖示
-    if (e.target.closest('.menu-toggle')) {
+    // 🍔 處理漢堡選單
+    const toggleBtn = e.target.closest('.menu-toggle');
+    if (toggleBtn) {
         const navLinks = document.querySelector('nav ul');
-        if (navLinks) {
-            navLinks.classList.toggle('active');
-        }
+        if (navLinks) navLinks.classList.toggle('active');
+        return;
+    }
+
+    // 🚀 處理回到頂部 (瞬間閃回)
+    const topBtn = e.target.closest('#back-to-top');
+    if (topBtn) {
+        window.scrollTo(0, 0);
+        return;
     }
 });
-</script>
+
+// 2. 偵測網頁捲動 📜
+window.addEventListener('scroll', function() {
+    const topBtn = document.getElementById('back-to-top');
+    if (topBtn) {
+        if (window.scrollY > 300) {
+            topBtn.classList.add('show');
+        } else {
+            topBtn.classList.remove('show');
+        }
+    }
+});</script>
 </body>
 </html>
