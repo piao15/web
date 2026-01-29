@@ -64,17 +64,34 @@ body {
     pointer-events: none; /* 讓滑鼠點擊可以穿透畫布，才點得到按鈕 */
     z-index: 9999; /* 確保在最上層 */
 }
-
 /* 📍 固定狀態的樣式 */
 .header-fixed {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10000; /* 層級最高，確保蓋在雪花 (9999) 上面 */
-    background-color: rgba(44, 62, 80, 0.95); /* 深藍色半透明，更有質感 */
+    z-index: 10000;
+    background-color: rgba(44, 62, 80, 0.95);
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    animation: slideDown 0.5s ease-in-out; /* 呼叫滑下動畫 */
+    animation: slideDown 0.5s ease-in-out;
+    
+    /* ✨ 新增：縮減高度並使用 Flex 讓內容並排 */
+    height: 70px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-around; /* 讓 LOGO 與導覽列有適當間距 */
+    padding: 0 20px;
+}
+
+/* ✨ 新增：當固定時，隱藏大標題 H1 */
+.header-fixed h1 {
+    display: none;
+}
+
+/* ✨ 新增：調整固定狀態下的導覽列背景，讓它透明以適應 Header 背景 */
+.header-fixed nav ul {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 /* 🎬 定義「滑下來」的動畫劇本 */
@@ -427,4 +444,25 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
     /* 設定最大寬度並置中 🎯 */
     max-width: 1000px; 
     margin: 20px auto; 
+}
+/* --- 9. 回到頂部按鈕樣式 --- */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;   /* 距離底部 30px */
+    right: 30px;    /* 距離右邊 30px */
+    width: 50px;
+    height: 50px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 50%; /* 變成圓形 ⚪ */
+    cursor: pointer;
+    z-index: 10002;    /* 確保在雪花與標頭之上 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+#back-to-top:hover {
+    background-color: #a93226;
+    transform: scale(1.1); /* 滑過時稍微變大 */
 }
