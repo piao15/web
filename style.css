@@ -328,6 +328,58 @@ footer {
         max-width: 100%;
     }
 }
+
+/* --- 漢堡選單專屬樣式 (手機版) --- */
+@media (max-width: 768px) {
+    /* 1. 顯示漢堡按鈕 */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    /* 2. 重新設定 nav ul (也就是 nav-links) 的外觀 */
+    nav ul {
+        position: fixed;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        width: 250px; /* 選單寬度 */
+        background-color: #2c3e50;
+        display: flex !important; /* 強制覆蓋原本的佈局 */
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 80px;
+        z-index: 10001;
+
+        /* 💡 預設推到螢幕右邊外面 */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* 3. 當加上 .active 類別時滑入 */
+    nav ul.active {
+        transform: translateX(0);
+    }
+
+    /* 4. 讓清單項目垂直排列 */
+    nav ul li {
+        display: block;
+        margin: 20px 0;
+        text-align: center;
+    }
+}
+
+/* 電腦版時隱藏漢堡按鈕 */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
 /* 📱 針對手機小螢幕 (375px - 400px) 的兩行排列調整 */
 @media (max-width: 520px) {
     #header-placeholder nav ul {

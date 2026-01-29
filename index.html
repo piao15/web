@@ -255,6 +255,16 @@ if (signupForm) {
             });
         }, { threshold: 0 });
         navObserver.observe(introSection);
-    </script>
+// === 功能 F：漢堡選單開關 (使用事件代理) ===
+document.addEventListener('click', function(e) {
+    // 檢查點擊的是否是漢堡按鈕，或者是按鈕內的圖示
+    if (e.target.closest('.menu-toggle')) {
+        const navLinks = document.querySelector('nav ul');
+        if (navLinks) {
+            navLinks.classList.toggle('active');
+        }
+    }
+});
+</script>
 </body>
 </html>
