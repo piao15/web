@@ -326,29 +326,21 @@ footer {
     text-align: center;
 }
 
-/* --- 8. RWD 響應式佈局 --- */
+/* --- 8. RWD 響應式佈局 (768px 以下通用設定) --- */
 @media (max-width: 768px) {
     section {
         margin: 20px 15px;
         padding: 25px;
     }
 
-    /* 這裡原本是 grid-template-columns，現在我們針對 flex 項目做調整 */
     .image-grid img {
-        /* ✨ 設定圖片基礎寬度為 45%（大約兩張一排），並允許它根據空間縮放 */
         flex: 1 1 45%; 
-        
-        /* ✨ 加上最小寬度限制，當螢幕太窄（小於 250px）時就會自動擠到下一行，變成一張一排 */
         min-width: 250px; 
-        
-        height: auto !important; /* 保持你原本的設定，恢復自動比例 📐 */
+        height: auto !important;
         max-width: 100%;
     }
-}
 
-/* --- 漢堡選單專屬樣式 (手機版) --- */
-@media (max-width: 768px) {
-    /* 1. 顯示漢堡按鈕 */
+    /* 🍔 漢堡選單專屬：顯示按鈕 */
     .menu-toggle {
         display: block;
         background: none;
@@ -359,35 +351,33 @@ footer {
         padding: 10px;
     }
 
-    /* 2. 重新設定 nav ul (也就是 nav-links) 的外觀 */
+    /* 🍔 漢堡選單專屬：側邊導覽列外觀 */
     nav ul {
         position: fixed;
         right: 0;
         top: 0;
         height: 100vh;
-        width: 250px; /* 選單寬度 */
+        width: 250px; 
         background-color: #2c3e50;
-        display: flex !important; /* 強制覆蓋原本的佈局 */
+        display: flex !important; 
         flex-direction: column;
         justify-content: flex-start;
         padding-top: 80px;
         z-index: 10001;
-
-        /* 💡 預設推到螢幕右邊外面 */
-        transform: translateX(100%);
+        transform: translateX(100%); /* 預設在外面 */
         transition: transform 0.3s ease-in-out;
     }
 
-    /* 3. 當加上 .active 類別時滑入 */
     nav ul.active {
-        transform: translateX(0);
+        transform: translateX(0); /* 滑入螢幕 */
     }
 
-    /* 4. 讓清單項目垂直排列 */
     nav ul li {
         display: block;
         margin: 20px 0;
         text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* ✨ 分隔線建議 */
+        padding-bottom: 10px;
     }
 }
 
@@ -396,54 +386,6 @@ footer {
     .menu-toggle {
         display: none;
     }
-}
-/* 📱 針對手機小螢幕 (375px - 400px) 的兩行排列調整 */
-@media (max-width: 520px) {
-    #header-placeholder nav ul {
-        display: flex;
-        flex-wrap: wrap; /* 1. 允許換行 */
-        justify-content: center; /* 2. 讓換行後的項目也居中 */
-        padding: 5px 0;
-        gap: 10px; 
-    }
-
-    #header-placeholder nav ul li {
-        /* 3. 設定寬度，讓第一行排 3 個 (30% x 3 = 90%) */
-        flex: 0 1 30%; 
-        min-width: 80px; 
-        margin: 5px 0;
-        text-align: center;
-    }
-
-    #header-placeholder nav ul li a {
-        font-size: 15px; 
-        display: block;
-        padding: 5px;
-    }
-}
-
-
-/* 強制顯示聚焦外框 */
-:focus {
-    outline: 4px solid #f1c40f !important;
-    outline-offset: 2px !important;
-}
-
-/* 針對按鈕和連結特別加強 */
-a:focus, button:focus, input:focus, select:focus, textarea:focus {
-    outline: 4px solid #f1c40f !important;
-    box-shadow: 0 0 15px rgba(241, 196, 15, 0.8) !important;
-}
-
-.image-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    
-    /* 設定最大寬度並置中 🎯 */
-    max-width: 1000px; 
-    margin: 20px auto; 
 }
 /* --- 9. 回到頂部按鈕樣式 --- */
 #back-to-top {
