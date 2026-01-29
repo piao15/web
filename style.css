@@ -448,21 +448,33 @@ a:focus, button:focus, input:focus, select:focus, textarea:focus {
 /* --- 9. 回到頂部按鈕樣式 --- */
 #back-to-top {
     position: fixed;
-    bottom: 30px;   /* 距離底部 30px */
-    right: 30px;    /* 距離右邊 30px */
+    bottom: 30px;
+    right: 30px;
     width: 50px;
     height: 50px;
     background-color: #c0392b;
     color: white;
     border: none;
-    border-radius: 50%; /* 變成圓形 ⚪ */
+    border-radius: 50%;
     cursor: pointer;
-    z-index: 10002;    /* 確保在雪花與標頭之上 */
+    z-index: 10002;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
+    
+    /* 💡 這裡開始是合併進來的控制邏輯 */
+    opacity: 0;           /* 1. 預設透明 */
+    visibility: hidden;    /* 2. 預設隱藏，防止沒看見卻點得到 */
+    transform: translateY(20px); /* 3. 預設稍微往下偏，等等浮現才有動感 */
+    transition: all 0.4s ease;   /* 4. 讓所有變化都變平滑 */
+}
+
+/* ✨ 當 JavaScript 幫我們加上 .show 類別時的樣子 */
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* 回到原本位置 */
 }
 
 #back-to-top:hover {
     background-color: #a93226;
-    transform: scale(1.1); /* 滑過時稍微變大 */
+    transform: scale(1.1); /* 滑過時稍微變大，這會覆蓋上面 translateY(0) 的縮放 */
 }
