@@ -8,6 +8,10 @@ body {
     padding: 0;
 }
 
+/* 隱藏漢堡按鈕的預設狀態 */
+.menu-toggle {
+    display: none; 
+}
 
 /* 初始狀態：看不見且位置偏下 */
 .reveal {
@@ -341,8 +345,8 @@ footer {
     }
 
     /* 🍔 漢堡選單專屬：顯示按鈕 */
-    .menu-toggle {
-        display: block;
+.menu-toggle {
+        display: block; /* 💡 只有在手機版才把它「變出來」 */
         background: none;
         border: none;
         color: white;
@@ -412,12 +416,12 @@ nav ul li {
 
 /* ✨ 當 JavaScript 幫我們加上 .show 類別時的樣子 */
 #back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0); /* 回到原本位置 */
+    opacity: 1 !important;        /* 💡 使用 !important 確保強制顯示 */
+    visibility: visible !important; /* 💡 確保它是可見的 */
+    transform: translateY(0);    /* 回到原位 */
 }
 
 #back-to-top:hover {
     background-color: #a93226;
-    transform: scale(1.1); /* 滑過時稍微變大，這會覆蓋上面 translateY(0) 的縮放 */
+    transform: scale(1.1);       /* 懸停時縮放 */
 }
