@@ -381,35 +381,48 @@ footer {
         padding: 10px;
     }
 @media (max-width: 768px) {
+    /* 1. 調整側邊欄容器 */
     nav ul {
         position: fixed;
         right: 0;
         top: 0;
         height: 100vh;
         width: 250px; 
-        background-color: #2c3e50 !important; /* 💡 強制加上深色背景，字才看得到 */
-        z-index: 100003; /* 💡 層級必須大於回到頂部按鈕 (100002) */
+        background-color: #2c3e50 !important;
+        z-index: 100003;
         
-        /* 💡 確保這兩行存在，側邊欄才會有滑出的動作 */
+        /* 💡 關鍵修正：改為垂直排列 */
+        display: flex;
+        flex-direction: column; 
+        align-items: flex-start; /* 文字靠左對齊 */
+        padding: 80px 20px;     /* 上方留白避開漢堡按鈕，四周增加內距 */
+        
         transform: translateX(100%); 
         transition: transform 0.3s ease-in-out;
     }
 
-    /* ✨ 當側邊欄開啟時的狀態 */
+    /* 2. 調整每一個選項的間距 */
+    nav ul li {
+        display: block;        /* 確保每個選項佔滿一行 */
+        width: 100%;           /* 寬度撐滿側邊欄 */
+        margin: 15px 0;        /* 💡 增加上下間距，讓字不要擠在一起 */
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* 增加細分隔線增加質感 */
+        padding-bottom: 10px;
+    }
+
+    /* 3. 調整文字大小與顏色 */
+    nav ul li a {
+        font-size: 18px;       /* 💡 調大字體，方便手機點擊 */
+        color: white !important;
+        display: block;        /* 讓點擊範圍變大 */
+        text-align: left;
+    }
+
     nav ul.active {
         transform: translateX(0); 
     }
 }
 
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-        text-align: left;
-        width: 85%;
-        border-bottom: 1px solid rgba(255,255,255,0.1); 
-        padding-bottom: 10px;
-    }
-}
 /* 電腦版時隱藏漢堡按鈕 */
 @media (min-width: 769px) {
     .menu-toggle {
