@@ -112,26 +112,29 @@ body {
 
 
 /* --- 2. 頁首與導覽 --- */
+
+
 header {
-    /* 放射狀深紅漸層，增加精緻儀式感 */
     background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%);
     color: white;
-    padding: 30px;
+    padding: 20px 0; /* 💡 減少上下內距，讓它不要太厚 */
     text-align: center;
+    width: 100%;    /* 💡 確保寬度佔滿 */
+}
+nav ul {
+    background-color: transparent; /* 💡 關鍵：讓它透出 header 的紅色 */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;       /* 啟用彈性佈局 */
+    justify-content: center; /* 電腦版讓選單置中 */
+    align-items: center;
+    width: 100%;
 }
 
-nav ul {
-    background-color: #2c3e50;
-    list-style: none;
-    padding: 0 px;
-    margin: 0;
-    text-align: center;
-display: flex;   /* ✨ 新增：讓導覽列也變成 flex 佈局 */
-    align-items: center; /* ✨ 新增：垂直置中 */
-}
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    display: block; /* 在 flex 模式下，li 建議設為 block */
+    margin: 0 15px; /* 調整選項之間的左右間距 */
 }
 
 nav ul li a {
