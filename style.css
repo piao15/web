@@ -39,9 +39,10 @@ body {
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0 20px;
     animation: slideDown 0.5s ease-in-out;
+     overflow: hidden; /* ✨ 新增這行：確保超出 70px 的部分會被切掉 */
 }
 
 /* 🎬 定義「滑下來」的動畫劇本 */
@@ -122,11 +123,12 @@ header {
 nav ul {
     background-color: #2c3e50;
     list-style: none;
-    padding: 10px;
+    padding: 0 px;
     margin: 0;
     text-align: center;
+display: flex;   /* ✨ 新增：讓導覽列也變成 flex 佈局 */
+    align-items: center; /* ✨ 新增：垂直置中 */
 }
-
 nav ul li {
     display: inline;
     margin-right: 20px;
