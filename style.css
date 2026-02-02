@@ -381,43 +381,42 @@ footer {
         padding: 10px;
     }
 @media (max-width: 768px) {
-    /* 1. 調整側邊欄容器 */
+    /* 📱 強制側邊欄在任何狀態下（包含 header-fixed）都擁有的外觀 */
     nav ul {
-        position: fixed;
+        position: fixed !important; /* 💡 確保位置固定在螢幕上 */
         right: 0;
         top: 0;
         height: 100vh;
         width: 250px; 
-        background-color: #2c3e50 !important;
+        background-color: #2c3e50 !important; /* 💡 使用 !important 確保底色不被滑動後的樣式蓋掉 */
         z-index: 100003;
         
-        /* 💡 關鍵修正：改為垂直排列 */
-        display: flex;
+        /* 排版修正：垂直排列 */
+        display: flex !important; 
         flex-direction: column; 
-        align-items: flex-start; /* 文字靠左對齊 */
-        padding: 80px 20px;     /* 上方留白避開漢堡按鈕，四周增加內距 */
+        align-items: flex-start;
+        padding: 80px 20px;
         
+        /* 隱藏/顯示動畫 */
         transform: translateX(100%); 
         transition: transform 0.3s ease-in-out;
     }
 
-    /* 2. 調整每一個選項的間距 */
-    nav ul li {
-        display: block;        /* 確保每個選項佔滿一行 */
-        width: 100%;           /* 寬度撐滿側邊欄 */
-        margin: 15px 0;        /* 💡 增加上下間距，讓字不要擠在一起 */
-        border-bottom: 1px solid rgba(255,255,255,0.1); /* 增加細分隔線增加質感 */
-        padding-bottom: 10px;
+    /* 當選單開啟時 */
+    nav ul.active {
+        transform: translateX(0); 
     }
 
-    /* 3. 調整文字大小與顏色 */
+    /* 確保文字在深色背景下始終清晰 */
     nav ul li a {
-        font-size: 18px;       /* 💡 調大字體，方便手機點擊 */
-        color: white !important;
-        display: block;        /* 讓點擊範圍變大 */
+        color: white !important; 
+        font-size: 18px;
+        padding: 15px 0;
+        display: block;
+        width: 100%;
         text-align: left;
     }
-
+}
     nav ul.active {
         transform: translateX(0); 
     }
