@@ -1,169 +1,951 @@
 /* --- 1. 全域與背景設定 --- */
+
 body {
+
     font-family: "Microsoft JhengHei", Arial, sans-serif;
+
     line-height: 1.6;
+
     color: #4a3c31;
-    background-color: #d1d1d1;
+
+    background-color: #d1d1d1; /* 霧灰色背景，襯托象牙白卡片 */
+
     margin: 0;
+
     padding: 0;
+
 }
 
-/* 滾動動畫 */
+
+
+/* 隱藏漢堡按鈕的預設狀態 */
+
+.menu-toggle {
+
+    display: none; 
+
+}
+
+
+
+/* 初始狀態：看不見且位置偏下 */
+
 .reveal {
+
     opacity: 0;
+
     transform: translateY(30px);
-    transition: all 0.8s ease-out;
+
+    transition: all 0.8s ease-out; /* 動畫持續 0.8 秒 */
+
 }
+
+
+
+/* 啟動狀態：變回可見且回到原位 */
+
 .reveal.active {
+
     opacity: 1;
+
     transform: translateY(0);
+
 }
 
-#snow-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-}
 
-/* --- 2. 頁首與導覽 (電腦版) --- */
-header {
-    background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%);
-    color: white;
-    padding: 30px 0 0 0;
-    text-align: center;
-    width: 100%;
-}
 
-nav ul {
-    background-color: #2c3e50; 
-    list-style: none;
-    padding: 10px 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    transition: 0.3s;
-}
 
-nav ul li { margin: 0 15px; }
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-nav ul li a:hover { color: #f1c40f; }
 
-/* 漢堡按鈕預設隱藏 */
-.menu-toggle { display: none; }
-
-/* --- 3. 固定狀態 (滑動後) --- */
-@keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
-}
+/* 📍 固定狀態的樣式（合併後版本） */
 
 .header-fixed {
+
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 70px;
-    z-index: 10000;
-    background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%) !important;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 70px; 
+
+    z-index: 10000; /* 高於雪花 (9999) */
+
+    background-color: rgba(44, 62, 80, 0.95);
+
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
     display: flex;
+
     align-items: center;
-    justify-content: space-around;
+
+    justify-content: space-between;
+
     padding: 0 20px;
+
     animation: slideDown 0.5s ease-in-out;
+
+     overflow: hidden; /* ✨ 新增這行：確保超出 70px 的部分會被切掉 */
+
 }
 
-/* 固定時隱藏大標題，讓選單透明透出紅色 */
-.header-fixed h1 { display: none; }
+
+
+/* 🎬 定義「滑下來」的動畫劇本 */
+
+@keyframes slideDown {
+
+    from { transform: translateY(-100%); }
+
+    to { transform: translateY(0); }
+
+}
+
+
+
+
+
+/* ⬅️ 初始狀態：在左邊 50px 處並隱藏 */
+
+.slide-in-left {
+
+    opacity: 0;
+
+    transform: translateX(-50px);
+
+    transition: opacity 1s ease-out, transform 1s ease-out;
+
+}
+
+
+
+/* ✅ 啟動狀態：回到原位並顯示 */
+
+.slide-in-left.active {
+
+    opacity: 1;
+
+    transform: translateX(0);
+
+}
+
+
+
+#snow-canvas {
+
+    position: fixed; /* 固定在螢幕上 */
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    pointer-events: none; /* 讓滑鼠點擊可以穿透畫布，才點得到按鈕 */
+
+    z-index: 9999; /* 確保在最上層 */
+
+}
+
+/* 📍 固定狀態：讓 Header 變回紅色並排好內容 */
+
+.header-fixed {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 70px;
+
+    z-index: 10000;
+
+    
+
+    /* 🎨 使用紅色漸層背景，與網頁頂部一致 */
+
+    background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%) !important;
+
+    background-color: #c0392b !important;
+
+    
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    padding: 0 20px;
+
+    animation: slideDown 0.5s ease-in-out;
+
+    overflow: hidden;
+
+}
+
+
+
+/* 固定時隱藏大標題，確保空間給選單 */
+
+.header-fixed h1 { 
+
+    display: none; 
+
+}
+
+
+
+/* 💡 讓內層選單透明，透出父層的紅色 */
+
 .header-fixed nav ul {
+
     background-color: transparent !important;
-    padding: 0;
+
     box-shadow: none;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
 }
 
-/* --- 4. 手機版 RWD (關鍵修正區) --- */
-@media (max-width: 768px) {
-    /* 漢堡按鈕顯示 */
-    .menu-toggle {
-        display: block;
-        background: none; border: none;
-        color: white; font-size: 30px;
-        cursor: pointer; padding: 10px;
-        z-index: 100004;
-    }
+/* 🎬 定義「滑下來」的動畫劇本 */
 
-    /* 📱 手機側邊欄：強制擁有深藍底色，不被 header-fixed 影響 */
-    nav ul {
-        position: fixed !important;
-        right: 0; top: 0;
-        height: 100vh !important;
-        width: 250px !important;
-        background-color: #2c3e50 !important; /* 強制深藍底色 🛡️ */
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 80px 20px !important;
-        transform: translateX(100%);
-        z-index: 100003;
-        display: flex !important;
-    }
+@keyframes slideDown {
 
-    nav ul.active { transform: translateX(0); }
+    from { transform: translateY(-100%); }
 
-    nav ul li { width: 100%; margin: 15px 0; }
-    nav ul li a { font-size: 18px; display: block; }
+    to { transform: translateY(0); }
 
-    /* 手機版固定時不需要隱藏 H1，交給側邊欄處理 */
-    .header-fixed { justify-content: space-between; }
 }
 
-/* --- 5. 其他區塊與按鈕 --- */
+
+
+
+
+/* --- 2. 頁首與導覽 --- */
+
+
+
+
+
+header {
+
+    background-image: linear-gradient(135deg, #c0392b 0%, #8e1e14 100%);
+
+    color: white;
+
+    padding: 30px 0 0 0; /* 💡 底部不留白，讓藍色導覽列貼齊 */
+
+    text-align: center;
+
+    width: 100%;
+
+}
+
+
+
+/* 🟢 平常狀態：深藍色導覽列 */
+
+nav ul {
+
+    background-color: #2c3e50; 
+
+    list-style: none;
+
+    padding: 10px 0;
+
+    margin: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+
+}
+
+
+
+/* 🔵 強化固定狀態的視覺 */
+
+.header-fixed nav ul {
+
+    background-color: transparent !important; 
+
+    padding: 0;
+
+    height: 70px;     /* 💡 讓高度與父層一致 */
+
+    display: flex;
+
+    align-items: center; /* 💡 讓文字絕對垂直置中 */
+
+}
+
+
+
+/* ✨ 緊接著放在這裡 */
+
+.header-fixed nav ul li a {
+
+    font-size: 14px;  /* 💡 讓固定後的選單文字更精緻 */
+
+    /* 如果你希望滑動後文字顏色也微調，也可以加在這裡 */
+
+}
+
+
+
+nav ul li {
+
+    display: block; /* 在 flex 模式下，li 建議設為 block */
+
+    margin: 0 15px; /* 調整選項之間的左右間距 */
+
+}
+
+
+
+nav ul li a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+
+nav ul li a:hover {
+
+    color: #f1c40f; /* 金色互動感 */
+
+}
+
+
+
+/* --- 3. 核心區塊 (Section) 統一規格 --- */
+
 section {
-    max-width: 800px;
+
+    max-width: 800px;           /* 統一寬度，解決視覺不平衡 */
+
     margin: 40px auto;
+
     padding: 40px;
-    background-color: #fdfaf6;
+
+    background-color: #fdfaf6;  /* 象牙白質感 */
+
     border-radius: 15px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
     box-sizing: border-box;
+
+    overflow: hidden;
+
 }
+
+
+
+/* 標題樣式：經典左側紅棒 */
+
+section h2 {
+
+    text-align: left;
+
+    color: #c0392b;
+
+    border-left: 6px solid #c0392b; 
+
+    padding-left: 15px;
+
+    margin-bottom: 25px;
+
+    display: block;
+
+    letter-spacing: 2px;       /* 增加字距，更顯專業 */
+
+}
+
+/* --- 4. 圖片美化與相框效果（佈局優化版） --- */
+
+.image-grid {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center; 
+
+    gap: 20px;
+
+    margin: 20px auto;
+
+    max-width: 1000px;
+
+}
+
+
+
+.image-grid img {
+
+    /* 這裡改成 30%，確保三張加間距能排在一行 */
+
+    flex: 0 1 calc(33.33% - 20px); 
+
+    min-width: 200px;        /* 調低最小寬度，避免擠掉第三張 📏 */
+
+    height: 200px !important;    
+
+    object-fit: cover;
+
+    filter: grayscale(50%);      
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease;
+
+}
+
+/* 原本的 Hover 效果也保留 */
+
+.image-grid img:hover {
+
+    transform: scale(1.05);
+
+    filter: grayscale(0%) brightness(1.1);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+}
+
+
+
+/* 餐廳簡介大圖：實體照片相框感 */
+
+figure {
+
+    margin: 20px 0;
+
+    text-align: center;
+
+}
+
+figure img {
+
+    max-width: 100%;             /* 確保不超過父層 */
+
+    box-sizing: border-box;     /* 關鍵：讓邊框寬度計算在內 📦 */
+
+    border: 10px solid #ffffff; 
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+    height: auto;
+
+    display: block;
+
+    margin: 0 auto;
+
+}
+
+figcaption {
+
+    text-align: center;
+
+    font-size: 0.9em;
+
+    color: #666;
+
+    font-style: italic;
+
+    margin-top: 10px;
+
+}
+
+
+
+/* --- 5. 表單對齊與美化 --- */
+
+form {
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+}
+
+
+
+/* 修正選項垂直置中 */
+
+form div, fieldset div {
+
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+form input[type="text"], 
+
+form input[type="email"], 
+
+form input[type="tel"], 
+
+form textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    box-sizing: border-box;
+
+    transition: 0.3s;
+
+}
+
+
+
+form input:focus, form textarea:focus {
+
+    border-color: #c0392b;
+
+    box-shadow: 0 0 8px rgba(192, 57, 43, 0.2);
+
+    outline: none;
+
+}
+
+
+
+/* 覆蓋勾選框寬度，防止擠掉文字 */
+
+form input[type="radio"],
+
+form input[type="checkbox"] {
+
+    width: auto !important;
+
+    margin: 0 10px 0 0;
+
+    cursor: pointer;
+
+}
+
+
+
+form label {
+
+    margin-bottom: 0;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+
+fieldset {
+
+    border: 1px solid #eee;
+
+    border-radius: 8px;
+
+    padding: 15px 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+/* --- 6. 表格設計 (森林綠主題) --- */
+
+
+
+
+
+/* ✨ 新增：外殼容器，負責處理手機版的捲軸 */
+
+.table-container {
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch; /* 讓手機滑動更順暢 📱 */
+
+    margin-bottom: 20px;
+
+}
+
+
+
+table {
+
+    width: 100%;
+
+    min-width: 500px; /* ✨ 新增：確保在小手機上內容不會擠扁，進而觸發捲軸 */
+
+    border-collapse: collapse;
+
+    margin: 20px 0;
+
+    background: white;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+}
+
+
+
+thead tr {
+
+    background-color: #1e3932; /* 深森林綠 */
+
+    color: white;
+
+}
+
+
+
+th, td {
+
+    padding: 15px;
+
+    border: 1px solid #eee;
+
+    text-align: left;
+
+}
+
+
+
+tbody tr:nth-child(even) {
+
+    background-color: #fafafa;
+
+}
+
+
+
+tbody tr:hover {
+
+    background-color: #fcf3cf; /* 滑過時淡淡金黃色 */
+
+}
+
+
+
+/* --- 7. 按鈕與頁尾 --- */
+
+.btn-more, button[type="submit"] {
+
+    display: inline-block;
+
+    padding: 12px 30px;
+
+    background-color: #c0392b;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 25px;
+
+    border: none;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    letter-spacing: 1px;
+
+}
+
+
+
+.btn-more:hover, button[type="submit"]:hover {
+
+    background-color: #a93226;
+
+    transform: translateY(-2px);
+
+    letter-spacing: 2px; /* 寬度微調動態感 */
+
+}
+
+
+
+footer {
+
+    background-color: #2c3e50;
+
+    color: #ecf0f1;
+
+    padding: 40px;
+
+    text-align: center;
+
+}
+
+
+
+/* --- 8. RWD 響應式佈局 (768px 以下通用設定) --- */
+
+@media (max-width: 768px) {
+
+    section {
+
+        margin: 20px 15px;
+
+        padding: 25px;
+
+    }
+
+
+
+    .image-grid img {
+
+        flex: 1 1 45%; 
+
+        min-width: 250px; 
+
+        height: auto !important;
+
+        max-width: 100%;
+
+    }
+
+
+
+    /* 🍔 漢堡選單專屬：顯示按鈕 */
+
+.menu-toggle {
+
+        display: block; /* 💡 只有在手機版才把它「變出來」 */
+
+        background: none;
+
+        border: none;
+
+        color: white;
+
+        font-size: 30px;
+
+        cursor: pointer;
+
+        padding: 10px;
+
+    }
+
+@media (max-width: 768px) {
+
+    /* 📱 強制側邊欄在任何狀態下（包含 header-fixed）都擁有的外觀 */
+
+    nav ul {
+
+        position: fixed !important; /* 💡 確保位置固定在螢幕上 */
+
+        right: 0;
+
+        top: 0;
+
+        height: 100vh;
+
+        width: 250px; 
+
+        background-color: #2c3e50 !important; /* 💡 使用 !important 確保底色不被滑動後的樣式蓋掉 */
+
+        z-index: 100003;
+
+        
+
+        /* 排版修正：垂直排列 */
+
+        display: flex !important; 
+
+        flex-direction: column; 
+
+        align-items: flex-start;
+
+        padding: 80px 20px;
+
+        
+
+        /* 隱藏/顯示動畫 */
+
+        transform: translateX(100%); 
+
+        transition: transform 0.3s ease-in-out;
+
+    }
+
+
+
+    /* 當選單開啟時 */
+
+    nav ul.active {
+
+        transform: translateX(0); 
+
+    }
+
+
+
+    /* 確保文字在深色背景下始終清晰 */
+
+    nav ul li a {
+
+        color: white !important; 
+
+        font-size: 18px;
+
+        padding: 15px 0;
+
+        display: block;
+
+        width: 100%;
+
+        text-align: left;
+
+    }
+
+}
+
+    nav ul.active {
+
+        transform: translateX(0); 
+
+    }
+
+}
+
+
+
+/* 電腦版時隱藏漢堡按鈕 */
+
+@media (min-width: 769px) {
+
+    .menu-toggle {
+
+        display: none;
+
+    }
+
+}
+
+/* --- 9. 回到頂部按鈕樣式 --- */
 
 #back-to-top {
+
     position: fixed;
-    bottom: 30px; right: 30px;
-    width: 50px; height: 50px;
+
+    bottom: 30px;
+
+    right: 30px;
+
+    width: 50px;
+
+    height: 50px;
+
     background-color: #c0392b;
-    color: white; border: none; border-radius: 50%;
-    z-index: 100002;
-    opacity: 0; visibility: hidden;
-    transition: 0.4s;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    z-index: 100002; /* 💡 提高層級，確保不被任何東西擋住 */
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+    opacity: 0;           
+
+    visibility: hidden;   
+
+    transform: translateY(20px);
+
+    transition: all 0.4s ease;
+
 }
-#back-to-top.show { opacity: 1; visibility: visible; }
 
 
-/* 🛠️ 終極修復：確保手機版在任何情況下都有底色 */
-@media (max-width: 768px) {
-    /* 強制手機版選單不論是否在 header-fixed 下都保持深藍色 */
-    .header-fixed nav ul, 
-    nav ul {
-        background-color: #2c3e50 !important; /* 🛡️ 確保底色存在 */
-        display: flex !important;             /* 🛡️ 確保顯示 */
-        flex-direction: column !important;    /* 🛡️ 垂直排列 */
-        position: fixed !important;
-        height: 100vh !important;
-        padding-top: 80px !important;         /* 避開漢堡按鈕 */
-    }
 
-    /* 確保文字不會因為透明設定而看不見 */
-    .header-fixed nav ul li a,
-    nav ul li a {
-        color: white !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
+#back-to-top.show {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    transform: translateY(0);
+
 }
+
+
+
+#back-to-top:hover {
+
+    background-color: #a93226;
+
+    transform: scale(1.1);       /* 懸停時縮放 */
+
+}
+
+
+
+/* 📍 固定狀態：讓 Header 變回紅色 */
+
+.header-fixed {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 70px;
+
+    z-index: 10000;
+
+    
+
+    /* 🎨 強制使用紅色漸層背景 */
