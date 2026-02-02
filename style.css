@@ -144,3 +144,26 @@ section {
     transition: 0.4s;
 }
 #back-to-top.show { opacity: 1; visibility: visible; }
+
+
+/* 🛠️ 終極修復：確保手機版在任何情況下都有底色 */
+@media (max-width: 768px) {
+    /* 強制手機版選單不論是否在 header-fixed 下都保持深藍色 */
+    .header-fixed nav ul, 
+    nav ul {
+        background-color: #2c3e50 !important; /* 🛡️ 確保底色存在 */
+        display: flex !important;             /* 🛡️ 確保顯示 */
+        flex-direction: column !important;    /* 🛡️ 垂直排列 */
+        position: fixed !important;
+        height: 100vh !important;
+        padding-top: 80px !important;         /* 避開漢堡按鈕 */
+    }
+
+    /* 確保文字不會因為透明設定而看不見 */
+    .header-fixed nav ul li a,
+    nav ul li a {
+        color: white !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
